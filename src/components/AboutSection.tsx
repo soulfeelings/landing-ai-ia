@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const useRevealOnScroll = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,21 +27,25 @@ const useRevealOnScroll = () => {
 
 const AboutSection = () => {
   const revealRef = useRevealOnScroll();
+  const { t } = useLanguage();
+
   return (
-    <section id="about" className="py-24 bg-solarized-base2/50">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row gap-12 items-center" ref={revealRef}>
+    <section id="about" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-solarized-base2/50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 items-center" ref={revealRef}>
           <div className="md:w-1/2 md:mx-auto">
-            <span className="font-mono text-solarized-blue reveal-on-scroll opacity-0">ABOUT US</span>
-            <h2 className="section-title reveal-on-scroll opacity-0">Who We <span className="text-solarized-magenta">Are</span></h2>
-            <p className="text-lg text-solarized-base01 mb-6 reveal-on-scroll opacity-0">
-              ByteCraft is a team of passionate technologists and creatives who love building innovative web solutions.
+            <span className="font-mono text-solarized-blue text-xs sm:text-sm md:text-base lg:text-lg reveal-on-scroll opacity-0">{t('about.title')}</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-solarized-base01 mb-4 sm:mb-6 reveal-on-scroll opacity-0">
+              {t('about.subtitle')} <span className="text-solarized-magenta">{t('about.subtitleHighlight')}</span>
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-solarized-base01 mb-4 sm:mb-6 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed reveal-on-scroll opacity-0">
+              {t('about.description')}
             </p>
-            <p className="text-lg text-solarized-base01 mb-6 reveal-on-scroll opacity-0">
-              Founded in 2018, we've helped dozens of businesses transform their digital presence and operations through custom web applications, stunning websites, and strategic digital solutions.
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-solarized-base01 mb-4 sm:mb-6 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed reveal-on-scroll opacity-0">
+              {t('about.history')}
             </p>
-            <p className="text-lg text-solarized-base01 mb-8 reveal-on-scroll opacity-0">
-              Our approach combines technical excellence with creative problem-solving to deliver results that exceed expectations and drive real business value.
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-solarized-base01 mb-6 sm:mb-8 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed reveal-on-scroll opacity-0">
+              {t('about.approach')}
             </p>
           </div>
         </div>

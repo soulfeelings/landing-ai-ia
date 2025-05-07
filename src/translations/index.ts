@@ -58,7 +58,8 @@ export const translations = {
     },
     about: {
       title: "ABOUT US",
-      subtitle: "Who We Are",
+      subtitle: "Who We",
+      subtitleHighlight: "Are",
       description: "ByteCraft is a team of passionate technologists and creatives who love building innovative web solutions.",
       history: "Founded in 2018, we've helped dozens of businesses transform their digital presence and operations through custom web applications, stunning websites, and strategic digital solutions.",
       approach: "Our approach combines technical excellence with creative problem-solving to deliver results that exceed expectations and drive real business value."
@@ -95,6 +96,29 @@ export const translations = {
         terms: "Terms",
         privacy: "Privacy",
         cookies: "Cookies"
+      }
+    },
+    contact: {
+      title: "CONTACT TERMINAL",
+      subtitle: "Initialize Connection",
+      subtitleHighlight: "Connection",
+      tagline: "$ establish_contact --secure --channel=direct",
+      form: {
+        name: "user.name = ",
+        namePlaceholder: "John Doe",
+        email: "user.email = ",
+        emailPlaceholder: "john@example.com",
+        subject: "message.subject = ",
+        subjectPlaceholder: "Your quest",
+        message: "message.body = ",
+        messagePlaceholder: "Enter your message here...",
+        submit: "$ send_message --priority=high",
+        alternative: "Alternative contact: ",
+        emailAddress: "echo \"Hello\" | mail -s \"Contact\" hello@bytecraft.dev"
+      },
+      success: {
+        title: "Message sent successfully!",
+        description: "Thank you for your message. We'll get back to you soon."
       }
     }
   },
@@ -158,6 +182,7 @@ export const translations = {
     about: {
       title: "О НАС",
       subtitle: "Кто Мы",
+      subtitleHighlight: "Есть",
       description: "ByteCraft - это команда увлеченных технологов и креативщиков, которые любят создавать инновационные веб-решения.",
       history: "Основанная в 2018 году, мы помогли десяткам компаний трансформировать их цифровое присутствие и операции с помощью кастомных веб-приложений, впечатляющих веб-сайтов и стратегических цифровых решений.",
       approach: "Наш подход сочетает техническое совершенство с креативным решением проблем, чтобы обеспечить результаты, превышающие ожидания и приносящие реальную бизнес-ценность."
@@ -194,6 +219,29 @@ export const translations = {
         terms: "Условия",
         privacy: "Конфиденциальность",
         cookies: "Cookies"
+      }
+    },
+    contact: {
+      title: "КОНТАКТНЫЙ ТЕРМИНАЛ",
+      subtitle: "Инициализация",
+      subtitleHighlight: "Соединения",
+      tagline: "$ establish_contact --secure --channel=direct",
+      form: {
+        name: "user.name = ",
+        namePlaceholder: "Иван Иванов",
+        email: "user.email = ",
+        emailPlaceholder: "ivan@example.com",
+        subject: "message.subject = ",
+        subjectPlaceholder: "Ваш запрос",
+        message: "message.body = ",
+        messagePlaceholder: "Введите ваше сообщение...",
+        submit: "$ send_message --priority=high",
+        alternative: "Альтернативный контакт: ",
+        emailAddress: "echo \"Hello\" | mail -s \"Contact\" hello@bytecraft.dev"
+      },
+      success: {
+        title: "Сообщение отправлено!",
+        description: "Спасибо за ваше сообщение. Мы свяжемся с вами в ближайшее время."
       }
     }
   }

@@ -3,9 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -17,8 +19,8 @@ const Contact = () => {
     e.preventDefault();
     
     toast({
-      title: "Message sent successfully!",
-      description: "Thank you for your message. We'll get back to you soon.",
+      title: t('contact.success.title'),
+      description: t('contact.success.description'),
       duration: 5000,
     });
   };
@@ -34,9 +36,9 @@ const Contact = () => {
     <section id="contact" className="py-12 sm:py-16 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16">
-          <span className="font-mono text-solarized-blue text-sm sm:text-base">CONTACT TERMINAL</span>
-          <h2 className="section-title text-3xl sm:text-4xl md:text-5xl">Initialize <span className="text-solarized-green">Connection</span></h2>
-          <p className="section-subtitle font-mono text-solarized-base01 text-sm sm:text-base">$ establish_contact --secure --channel=direct</p>
+          <span className="font-mono text-solarized-blue text-sm sm:text-base">{t('contact.title')}</span>
+          <h2 className="section-title text-3xl sm:text-4xl md:text-5xl">{t('contact.subtitle')} <span className="text-solarized-green">{t('contact.subtitleHighlight')}</span></h2>
+          <p className="section-subtitle font-mono text-solarized-base01 text-sm sm:text-base">{t('contact.tagline')}</p>
         </div>
         
         <div className="max-w-3xl mx-auto">
@@ -56,13 +58,13 @@ const Contact = () => {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
                     <span className="text-solarized-green">$</span>
-                    <span className="ml-2">user.name = </span>
+                    <span className="ml-2">{t('contact.form.name')}</span>
                     <Input 
                       id="name"
                       value={formState.name}
                       onChange={handleChange}
                       className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
-                      placeholder="John Doe"
+                      placeholder={t('contact.form.namePlaceholder')}
                     />
                   </div>
                 </div>
@@ -70,14 +72,14 @@ const Contact = () => {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
                     <span className="text-solarized-green">$</span>
-                    <span className="ml-2">user.email = </span>
+                    <span className="ml-2">{t('contact.form.email')}</span>
                     <Input 
                       id="email"
                       type="email"
                       value={formState.email}
                       onChange={handleChange}
                       className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
-                      placeholder="john@example.com"
+                      placeholder={t('contact.form.emailPlaceholder')}
                     />
                   </div>
                 </div>
@@ -85,13 +87,13 @@ const Contact = () => {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
                     <span className="text-solarized-green">$</span>
-                    <span className="ml-2">message.subject = </span>
+                    <span className="ml-2">{t('contact.form.subject')}</span>
                     <Input 
                       id="subject"
                       value={formState.subject}
                       onChange={handleChange}
                       className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
-                      placeholder="Your quest"
+                      placeholder={t('contact.form.subjectPlaceholder')}
                     />
                   </div>
                 </div>
@@ -99,14 +101,14 @@ const Contact = () => {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-start text-solarized-base1 text-sm sm:text-base">
                     <span className="text-solarized-green">$</span>
-                    <span className="ml-2">message.body = """</span>
+                    <span className="ml-2">{t('contact.form.message')}</span>
                   </div>
                   <Textarea 
                     id="message"
                     value={formState.message}
                     onChange={handleChange}
                     className="mt-2 bg-solarized-base02/50 border-b border-solarized-cyan/20 rounded-none text-solarized-base1 min-h-[120px] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
-                    placeholder="Enter your message here..."
+                    placeholder={t('contact.form.messagePlaceholder')}
                   />
                   <div className="flex text-solarized-base1 text-sm sm:text-base">
                     <span className="text-solarized-green">$</span>
@@ -118,12 +120,12 @@ const Contact = () => {
                   type="submit" 
                   className="w-full bg-solarized-green hover:bg-solarized-green/90 text-solarized-base03 font-mono mt-4 text-sm sm:text-base"
                 >
-                  $ send_message --priority=high
+                  {t('contact.form.submit')}
                 </Button>
               </div>
 
               <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-solarized-base1 font-mono">
-                <p>Alternative contact: <span className="text-solarized-blue">echo "Hello" | mail -s "Contact" hello@bytecraft.dev</span></p>
+                <p>{t('contact.form.alternative')} <span className="text-solarized-blue">{t('contact.form.emailAddress')}</span></p>
               </div>
             </div>
           </form>
