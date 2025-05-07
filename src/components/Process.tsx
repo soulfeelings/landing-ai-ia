@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ProcessStep = ({ number, title, description }: { number: number, title: string, description: string }) => {
   return (
@@ -17,18 +18,20 @@ const ProcessStep = ({ number, title, description }: { number: number, title: st
 };
 
 const Process = () => {
+  const { t } = useLanguage();
+  
   const steps = [
     {
-      title: "Research & Discovery",
-      description: "We start by understanding your business, goals, audience, and competitors to create a strategic foundation for your project."
+      title: t('process.steps.research.title'),
+      description: t('process.steps.research.description')
     },
     {
-      title: "Design & Prototyping",
-      description: "Our designers create wireframes and visual designs that bring your vision to life, with multiple rounds of feedback."
+      title: t('process.steps.design.title'),
+      description: t('process.steps.design.description')
     },
     {
-      title: "Development & Testing",
-      description: "Our engineers build your solution using modern technologies, with rigorous testing at every stage."
+      title: t('process.steps.development.title'),
+      description: t('process.steps.development.description')
     }
   ];
 
@@ -37,9 +40,9 @@ const Process = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-16">
           <div className="md:w-2/5">
-            <span className="font-mono text-solarized-blue">OUR PROCESS</span>
-            <h2 className="section-title">How We <span className="text-solarized-cyan">Work</span></h2>
-            <p className="section-subtitle">$ execute process.sh --with=precision</p>
+            <span className="font-mono text-solarized-blue">{t('process.title')}</span>
+            <h2 className="section-title">{t('process.subtitle')} <span className="text-solarized-cyan">{t('process.subtitleHighlight')}</span></h2>
+            <p className="section-subtitle">{t('process.tagline')}</p>
           </div>
           
           <div className="md:w-3/5">

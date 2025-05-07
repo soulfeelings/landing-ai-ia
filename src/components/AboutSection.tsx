@@ -42,9 +42,6 @@ const AboutSection = () => {
             <p className="text-lg text-solarized-base01 mb-8 reveal-on-scroll opacity-0">
               Our approach combines technical excellence with creative problem-solving to deliver results that exceed expectations and drive real business value.
             </p>
-            <Button className="bg-solarized-magenta hover:bg-solarized-magenta/90 text-white font-mono reveal-on-scroll opacity-0">
-              Meet Our Team
-            </Button>
           </div>
         </div>
       </div>

@@ -4,11 +4,13 @@ import { Button } from './ui/button';
 import { ChevronDown } from 'lucide-react';
 import CircuitBackground from './CircuitBackground';
 import ContactModal from './ContactModal';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -88,7 +90,7 @@ const Hero = () => {
             className="reveal mb-2"
           >
             <div className="inline-block bg-solarized-base2 px-3 py-1 mb-4 border border-solarized-base1/30 rounded-full">
-              <span className="text-solarized-blue font-mono text-xs sm:text-sm">$ crafting_the_future_of_web &gt;</span>
+              <span className="text-solarized-blue font-mono text-xs sm:text-sm">{t('hero.tagline')}</span>
             </div>
           </motion.div>
 
@@ -98,8 +100,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="reveal text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-solarized-base01"
           >
-            <span className="text-glow text-solarized-blue">Web Solutions</span> for the 
-            <span className="text-solarized-cyan"> Future</span>
+            <span className="text-glow text-solarized-blue">{t('hero.title')}</span>
           </motion.h1>
 
           <motion.p
@@ -108,7 +109,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="reveal text-base sm:text-lg md:text-xl lg:text-2xl text-solarized-base00 mb-6 sm:mb-8 max-w-3xl mx-auto px-4"
           >
-            We craft pixel-perfect interfaces and powerful backends that propel your business into the digital frontier
+            {t('hero.subtitle')}
           </motion.p>
           
           <motion.div
@@ -122,10 +123,10 @@ const Hero = () => {
               className="bg-solarized-blue hover:bg-solarized-blue/90 text-white font-mono w-full sm:w-auto"
               onClick={() => setContactModalOpen(true)}
             >
-              Start a Project
+              {t('hero.startProject')}
             </Button>
             <Button size={isMobile ? "default" : "lg"} variant="outline" className="border-solarized-base01/30 font-mono w-full sm:w-auto">
-              Explore Our Services
+              {t('hero.exploreServices')}
             </Button>
           </motion.div>
         </div>
@@ -136,7 +137,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="scroll-indicator mt-8 sm:mt-12"
         >
-          <span className="text-solarized-base01 font-mono text-xs sm:text-sm mb-2">Scroll to explore</span>
+          <span className="text-solarized-base01 font-mono text-xs sm:text-sm mb-2">{t('hero.scrollToExplore')}</span>
           <ChevronDown className="h-4 w-4 sm:h-5 sm:w-5 text-solarized-blue animate-bounce" />
         </motion.div>
       </section>

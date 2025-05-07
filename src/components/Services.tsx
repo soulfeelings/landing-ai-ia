@@ -4,6 +4,7 @@ import CanvasCodeWave from "./CanvasCodeWave";
 import CanvasPhone from "./CanvasPhone";
 import CanvasMatrix from "./CanvasMatrix";
 import { CanvasElementProps } from "./CanvasElementProps.type";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const CanvasMap: Record<string, React.ComponentType<CanvasElementProps>> = {
   wave: CanvasWave,
@@ -41,33 +42,31 @@ const ServiceCard = ({ title, icon, description, canvas }: Service) => {
 };
 
 const Services = () => {
+  const { t } = useLanguage();
+  
   const services: Service[] = [
     {
-      title: "Web Development",
+      title: t('services.webDev.title'),
       icon: "</> ",
-      description:
-        "Custom websites and web applications built with modern technologies and best practices.",
+      description: t('services.webDev.description'),
       canvas: "codeWave",
     },
     {
-      title: "Mobile Development",
+      title: t('services.mobileDev.title'),
       icon: "🔄",
-      description:
-        "Full-featured mobile apps built with modern technologies and best practices.",
+      description: t('services.mobileDev.description'),
       canvas: "phone",
     },
     {
-      title: "Custom Software",
+      title: t('services.customSoftware.title'),
       icon: "⌘ ⌥",
-      description:
-        "Tailored software solutions that automate processes and solve complex business problems.",
+      description: t('services.customSoftware.description'),
       canvas: "matrix",
     },
     {
-      title: "API Integration",
+      title: t('services.apiIntegration.title'),
       icon: "↹ ↻",
-      description:
-        "Seamless integration of third-party services and platforms into your existing systems.",
+      description: t('services.apiIntegration.description'),
       canvas: "wave",
     },
   ];
@@ -76,12 +75,12 @@ const Services = () => {
     <section id="services" className="py-24 bg-solarized-base2/50">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="font-mono text-solarized-blue">OUR SERVICES</span>
+          <span className="font-mono text-solarized-blue">{t('services.title')}</span>
           <h2 className="section-title">
-            What We <span className="text-solarized-blue">Create</span>
+            {t('services.subtitle')} <span className="text-solarized-blue">{t('services.subtitleHighlight')}</span>
           </h2>
           <p className="section-subtitle">
-            $ tech_solutions --for=modern_problems
+            {t('services.tagline')}
           </p>
         </div>
 
