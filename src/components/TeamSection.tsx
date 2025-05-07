@@ -5,7 +5,7 @@ const TeamSection = () => {
   const { t } = useLanguage();
   
   return (
-    <section className="py-20 bg-solarized-base3 relative">
+    <section id="team" className="py-20 bg-solarized-base3 relative">
       <div className="container mx-auto px-4 relative">
         <h2 className="text-3xl font-mono text-solarized-base01 mb-12 text-center">{t('team.title')}</h2>
         <p className="text-xl font-mono text-solarized-blue mb-12 text-center">{t('team.subtitle')}</p>

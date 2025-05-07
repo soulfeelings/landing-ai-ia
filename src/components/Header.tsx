@@ -3,6 +3,7 @@ import { ChevronRight, Menu } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import ContactModal from './ContactModal';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -23,10 +24,10 @@ const Header = () => {
     <>
       <header className="fixed w-full top-0 z-50 bg-solarized-base3/80 backdrop-blur-md border-b border-solarized-base1/20 py-4">
         <div className="container mx-auto flex items-center justify-between">
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             <span className="font-mono text-solarized-blue text-xl font-semibold">BYTE</span>
             <span className="font-mono text-solarized-cyan ml-1">CRAFT</span>
-          </div>
+          </Link>
           
           <nav className="hidden md:flex items-center gap-6">
             <a 

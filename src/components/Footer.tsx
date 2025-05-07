@@ -1,69 +1,112 @@
 import React, { useState } from 'react';
-import ContactModal from './ContactModal';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import ContactModal from './ContactModal';
+import LegalModal from './LegalModal';
 
 const Footer = () => {
-  const [contactModalOpen, setContactModalOpen] = useState(false);
   const { t } = useLanguage();
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isLegalOpen, setIsLegalOpen] = useState(false);
+  const [legalType, setLegalType] = useState<'privacy' | 'terms' | 'cookies'>('privacy');
 
-  const handleAboutClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const about = document.getElementById('about');
-    if (about) {
-      about.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleLegalClick = (type: 'privacy' | 'terms' | 'cookies') => {
+    setLegalType(type);
+    setIsLegalOpen(true);
   };
 
   return (
-    <>
-      <footer className="bg-solarized-base01 text-solarized-base2 py-12">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
-            <div className="md:w-1/3">
-              <div className="flex items-center mb-4">
-                <span className="font-mono text-solarized-blue text-2xl font-semibold">BYTE</span>
-                <span className="font-mono text-solarized-cyan ml-1 text-2xl">CRAFT</span>
-              </div>
-              <p className="max-w-xs text-solarized-base1">
-                {t('footer.description')}
-              </p>
-            </div>
-            
-            <div className="md:w-1/3">
-              <h3 className="font-mono text-lg font-semibold mb-4 text-solarized-base2">{t('footer.company.title')}</h3>
-              <ul className="space-y-2">
-                <li><a href="#about" onClick={handleAboutClick} className="text-solarized-base1 hover:text-solarized-blue">{t('footer.company.about')}</a></li>
-                <li><a href="#" className="text-solarized-base1 hover:text-solarized-blue">{t('footer.company.team')}</a></li>
-                <li><a href="#/careers" className="text-solarized-base1 hover:text-solarized-blue">{t('footer.company.careers')}</a></li>
-                <li><a href="#" className="text-solarized-base1 hover:text-solarized-blue">{t('footer.company.blog')}</a></li>
-              </ul>
-            </div>
-            
-            <div className="md:w-1/3">
-              <h3 className="font-mono text-lg font-semibold mb-4 text-solarized-base2">{t('footer.connect.title')}</h3>
-              <ul className="space-y-2">
-                <li><a href="#" onClick={() => setContactModalOpen(true)} className="text-solarized-base1 hover:text-solarized-blue">{t('footer.connect.contact')}</a></li>
-                <li><a href="https://t.me/TheLABL" target="_blank" rel="noopener noreferrer" className="text-solarized-base1 hover:text-solarized-blue">Telegram</a></li>
-                <li><a href="https://wa.me/your_number" target="_blank" rel="noopener noreferrer" className="text-solarized-base1 hover:text-solarized-blue">WhatsApp</a></li>
-              </ul>
+    <footer className="bg-solarized-base03 border-t border-solarized-cyan/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Company Info */}
+          <div className="space-y-4">
+            <h3 className="text-solarized-blue font-mono text-sm sm:text-base">{t('footer.company.title')}</h3>
+            <p className="text-solarized-base1 text-xs sm:text-sm">{t('footer.description')}</p>
+            <div className="space-y-2">
+              <a
+                href="#about"
+                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+              >
+                {t('footer.company.about')}
+              </a>
+              <a
+                href="#/careers"
+                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+              >
+                {t('footer.company.careers')}
+              </a>
+              <button
+                onClick={() => handleLegalClick('privacy')}
+                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+              >
+                {t('footer.legal.privacy')}
+              </button>
+              <button
+                onClick={() => handleLegalClick('terms')}
+                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+              >
+                {t('footer.legal.terms')}
+              </button>
+              <button
+                onClick={() => handleLegalClick('cookies')}
+                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+              >
+                {t('footer.legal.cookies')}
+              </button>
             </div>
           </div>
-          
-          <div className="pt-8 border-t border-solarized-base00/30 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-solarized-base1 text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} ByteCraft. {t('footer.rights')}
-            </p>
-            
-            <div className="flex space-x-6">
-              <a href="#" className="text-solarized-base1 hover:text-solarized-blue">{t('footer.legal.terms')}</a>
-              <a href="#" className="text-solarized-base1 hover:text-solarized-blue">{t('footer.legal.privacy')}</a>
-              <a href="#" className="text-solarized-base1 hover:text-solarized-blue">{t('footer.legal.cookies')}</a>
+
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h3 className="text-solarized-blue font-mono text-sm sm:text-base">{t('footer.connect.title')}</h3>
+            <div className="space-y-2">
+              <button
+                onClick={() => setIsContactOpen(true)}
+                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+              >
+                {t('footer.connect.contact')}
+              </button>
+              <a
+                href="https://t.me/TheLABL"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+              >
+                Telegram
+              </a>
+              <a
+                href="https://wa.me/your_number"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+              >
+                WhatsApp
+              </a>
             </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="space-y-4">
+            <p className="text-solarized-base1 text-xs sm:text-sm">© 2024 ByteCraft. {t('footer.rights')}</p>
           </div>
         </div>
-      </footer>
-      <ContactModal isOpen={contactModalOpen} onClose={() => setContactModalOpen(false)} />
-    </>
+      </div>
+
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+      />
+
+      {/* Legal Modal */}
+      <LegalModal
+        isOpen={isLegalOpen}
+        onClose={() => setIsLegalOpen(false)}
+        type={legalType}
+      />
+    </footer>
   );
 };
 
