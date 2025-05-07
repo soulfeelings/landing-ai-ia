@@ -67,19 +67,19 @@ const Header = () => {
           </button>
         </div>
         {mobileOpen && (
-          <div className="fixed inset-0 z-50 bg-solarized-base3/95 flex flex-col items-center justify-center gap-4 text-center md:hidden max-h-screen overflow-y-auto px-4 py-8">
-            <button className="absolute top-4 right-4 text-xl" onClick={() => setMobileOpen(false)} aria-label="Close menu">✕</button>
-            <a onClick={() => handleNavClick('services')} className="font-mono text-xl text-solarized-base01 hover:text-solarized-blue transition-colors cursor-pointer">Services</a>
-            <a onClick={() => handleNavClick('process')} className="font-mono text-xl text-solarized-base01 hover:text-solarized-blue transition-colors cursor-pointer">Process</a>
-            <a onClick={() => handleNavClick('about')} className="font-mono text-xl text-solarized-base01 hover:text-solarized-blue transition-colors cursor-pointer">About</a>
+          <div className="fixed top-16 right-4 z-50 bg-solarized-base3/95 rounded-lg shadow-lg flex flex-col items-center justify-center gap-4 text-center md:hidden w-64 py-6 px-4">
+            <button className="absolute top-2 right-2 text-xl" onClick={() => setMobileOpen(false)} aria-label="Close menu">✕</button>
+            <a onClick={() => handleNavClick('services')} className="font-mono text-base text-solarized-base01 hover:text-solarized-blue transition-colors cursor-pointer w-full">Services</a>
+            <a onClick={() => handleNavClick('process')} className="font-mono text-base text-solarized-base01 hover:text-solarized-blue transition-colors cursor-pointer w-full">Process</a>
+            <a onClick={() => handleNavClick('about')} className="font-mono text-base text-solarized-base01 hover:text-solarized-blue transition-colors cursor-pointer w-full">About</a>
             <a 
               onClick={() => {
                 setMobileOpen(false);
                 setContactModalOpen(true);
               }} 
-              className="font-mono text-xl text-solarized-blue border border-solarized-blue rounded px-6 py-2 mt-2 hover:bg-solarized-blue/10 transition-colors cursor-pointer flex items-center gap-2"
+              className="font-mono text-base text-solarized-blue border border-solarized-blue rounded px-4 py-2 mt-2 hover:bg-solarized-blue/10 transition-colors cursor-pointer flex items-center justify-center gap-2 w-full"
             >
-              Contact <ChevronRight className="h-5 w-5" />
+              Contact <ChevronRight className="h-4 w-4" />
             </a>
           </div>
         )}
