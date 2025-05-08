@@ -4,7 +4,6 @@ import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Process from '@/components/Process';
 import AboutSection from '@/components/AboutSection';
-import TeamSection from '@/components/TeamSection';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -43,7 +42,6 @@ const Index = () => {
       <Services />
       <Process />
       <AboutSection />
-      <TeamSection />
       <Contact />
       <Footer />
     </div>
