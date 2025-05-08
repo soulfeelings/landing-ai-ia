@@ -4,11 +4,13 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import ContactModal from './ContactModal';
 import LegalModal from './LegalModal';
+import CareersModal from './CareersModal';
 
 const Footer = () => {
   const { t } = useLanguage();
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isLegalOpen, setIsLegalOpen] = useState(false);
+  const [isCareersOpen, setIsCareersOpen] = useState(false);
   const [legalType, setLegalType] = useState<'privacy' | 'terms' | 'cookies'>('privacy');
 
   const handleLegalClick = (type: 'privacy' | 'terms' | 'cookies') => {
@@ -31,12 +33,12 @@ const Footer = () => {
               >
                 {t('footer.company.about')}
               </a>
-              <a
-                href="#/careers"
-                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+              <button
+                onClick={() => setIsCareersOpen(true)}
+                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors w-full text-left"
               >
                 {t('footer.company.careers')}
-              </a>
+              </button>
               <button
                 onClick={() => handleLegalClick('privacy')}
                 className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
@@ -105,6 +107,12 @@ const Footer = () => {
         isOpen={isLegalOpen}
         onClose={() => setIsLegalOpen(false)}
         type={legalType}
+      />
+
+      {/* Careers Modal */}
+      <CareersModal
+        isOpen={isCareersOpen}
+        onClose={() => setIsCareersOpen(false)}
       />
     </footer>
   );

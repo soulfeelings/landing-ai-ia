@@ -53,7 +53,7 @@ const Services = () => {
     },
     {
       title: t('services.mobileDev.title'),
-      icon: "🔄",
+      icon: "[ ]",
       description: t('services.mobileDev.description'),
       canvas: "phone",
     },

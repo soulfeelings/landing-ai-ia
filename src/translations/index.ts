@@ -113,7 +113,7 @@ export const translations = {
         subjectPlaceholder: "Your quest",
         message: "message.body = ",
         messagePlaceholder: "Enter your message here...",
-        submit: "$ send_message --priority=high",
+        submit: "Send Request",
         alternative: "Alternative contact: ",
         emailAddress: "echo \"Hello\" | mail -s \"Contact\" hello@bytecraft.dev"
       },
@@ -147,6 +147,10 @@ export const translations = {
         2: "We use essential cookies that are necessary for the website to function properly. These cookies cannot be disabled and do not collect any personal information.",
         3: "We also use analytics cookies to understand how visitors interact with our website. These cookies help us improve our services and user experience.",
         4: "You can control cookies through your browser settings. However, disabling certain cookies may limit your ability to use some features of our website."
+      },
+      careers: {
+        title: "Join the Team",
+        message: "If you think you belong with us, write to @TheLABL on Telegram."
       }
     }
   },
@@ -170,7 +174,7 @@ export const translations = {
       title: "НАШИ УСЛУГИ",
       subtitle: "Что Мы",
       subtitleHighlight: "Создаем",
-      tagline: "$ tech_solutions --for=modern_problems",
+      tagline: "$ технические_решения --для=современных_проблем",
       webDev: {
         title: "Веб-разработка",
         description: "Индивидуальные веб-сайты и веб-приложения, созданные с использованием современных технологий и лучших практик."
@@ -192,7 +196,7 @@ export const translations = {
       title: "НАШ ПРОЦЕСС",
       subtitle: "Как мы",
       subtitleHighlight: "работаем",
-      tagline: "$ execute process.sh --with=precision",
+      tagline: "",
       steps: {
         research: {
           title: "Исследование и анализ",
@@ -253,8 +257,8 @@ export const translations = {
     contact: {
       title: "КОНТАКТНЫЙ ТЕРМИНАЛ",
       subtitle: "Инициализация",
-      subtitleHighlight: "соединения",
-      tagline: "$ establish_contact --secure --channel=direct",
+      subtitleHighlight: "cоединения",
+      tagline: "",
       form: {
         name: "user.name = ",
         namePlaceholder: "Иван Иванов",
@@ -263,10 +267,10 @@ export const translations = {
         subject: "message.subject = ",
         subjectPlaceholder: "Ваш запрос",
         message: "message.body = ",
-        messagePlaceholder: "Введите ваше сообщение...",
-        submit: "$ send_message --priority=high",
+        messagePlaceholder: "Введите ваше сообщение здесь...",
+        submit: "Отправить заявку",
         alternative: "Альтернативный контакт: ",
-        emailAddress: "echo \"Hello\" | mail -s \"Contact\" hello@bytecraft.dev"
+        emailAddress: "echo \"Привет\" | mail -s \"Контакт\" hello@bytecraft.dev"
       },
       success: {
         title: "Сообщение отправлено!",
@@ -298,6 +302,10 @@ export const translations = {
         2: "Мы используем необходимые файлы cookie, которые необходимы для правильной работы веб-сайта. Эти файлы cookie нельзя отключить, и они не собирают никакой личной информации.",
         3: "Мы также используем аналитические файлы cookie для понимания того, как посетители взаимодействуют с нашим веб-сайтом. Эти файлы cookie помогают нам улучшать наши услуги и пользовательский опыт.",
         4: "Вы можете контролировать файлы cookie через настройки вашего браузера. Однако отключение определенных файлов cookie может ограничить вашу возможность использовать некоторые функции нашего веб-сайта."
+      },
+      careers: {
+        title: "Присоединяйся к команде",
+        message: "Если ты думаешь, что тебе к нам — пиши @TheLABL в Telegram."
       }
     }
   }

@@ -1,14 +1,20 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
+import CanvasMatrix from './CanvasMatrix';
 
 const AboutSection = () => {
   const revealRef = useRevealOnScroll();
   const { t } = useLanguage();
 
   return (
-    <section id="about" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-solarized-base2/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-solarized-base2/50 relative overflow-hidden">
+      {/* Matrix Background */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <CanvasMatrix width={window.innerWidth} height={window.innerHeight} color="#268bd2" />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 items-center" ref={revealRef}>
           <div className="md:w-1/2 md:mx-auto">
             <span className="font-mono text-solarized-blue text-xs sm:text-sm md:text-base lg:text-lg reveal-on-scroll opacity-0">{t('about.title')}</span>

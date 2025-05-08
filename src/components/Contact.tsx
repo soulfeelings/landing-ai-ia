@@ -123,10 +123,6 @@ const Contact = () => {
                   {t('contact.form.submit')}
                 </Button>
               </div>
-
-              <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-solarized-base1 font-mono">
-                <p>{t('contact.form.alternative')} <span className="text-solarized-blue">{t('contact.form.emailAddress')}</span></p>
-              </div>
             </div>
           </form>
         </div>
