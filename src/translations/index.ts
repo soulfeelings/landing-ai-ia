@@ -22,19 +22,27 @@ export const translations = {
       tagline: "$ tech_solutions --for=modern_problems",
       webDev: {
         title: "Web Development",
-        description: "Custom websites and web applications built with modern technologies and best practices."
+        description: "Custom websites and web applications built with modern technologies and best practices.",
+        price: "from $100",
+        time: "from 1 day"
       },
       mobileDev: {
         title: "Mobile Development",
-        description: "Full-featured mobile apps built with modern technologies and best practices."
+        description: "Full-featured mobile apps built with modern technologies and best practices.",
+        price: "from $250",
+        time: "from 3 days"
       },
       customSoftware: {
         title: "Custom Software",
-        description: "Tailored software solutions that automate processes and solve complex business problems."
+        description: "Tailored software solutions that automate processes and solve complex business problems.",
+        price: "custom pricing",
+        time: "based on requirements"
       },
       apiIntegration: {
         title: "API Integration",
-        description: "Seamless integration of third-party services and platforms into your existing systems."
+        description: "Seamless integration of third-party services and platforms into your existing systems.",
+        price: "custom pricing",
+        time: "based on requirements"
       }
     },
     process: {
@@ -177,19 +185,27 @@ export const translations = {
       tagline: "$ технические_решения --для=современных_проблем",
       webDev: {
         title: "Веб-разработка",
-        description: "Индивидуальные веб-сайты и веб-приложения, созданные с использованием современных технологий и лучших практик."
+        description: "Индивидуальные веб-сайты и веб-приложения, созданные с использованием современных технологий и лучших практик.",
+        price: "от 9.000 ₽",
+        time: "от 1 дня"
       },
       mobileDev: {
         title: "Мобильная разработка",
-        description: "Полнофункциональные мобильные приложения, созданные с использованием современных технологий и лучших практик."
+        description: "Полнофункциональные мобильные приложения, созданные с использованием современных технологий и лучших практик.",
+        price: "от 20.000 ₽",
+        time: "от 3 дней"
       },
       customSoftware: {
         title: "Кастомное ПО",
-        description: "Индивидуальные программные решения, которые автоматизируют процессы и решают сложные бизнес-задачи."
+        description: "Индивидуальные программные решения, которые автоматизируют процессы и решают сложные бизнес-задачи.",
+        price: "цена рассчитывается под задачу",
+        time: "сроки по согласованию"
       },
       apiIntegration: {
         title: "API Интеграция",
-        description: "Безупречная интеграция сторонних сервисов и платформ в ваши существующие системы."
+        description: "Безупречная интеграция сторонних сервисов и платформ в ваши существующие системы.",
+        price: "цена рассчитывается под задачу",
+        time: "сроки по согласованию"
       }
     },
     process: {

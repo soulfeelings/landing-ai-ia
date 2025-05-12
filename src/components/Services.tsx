@@ -5,6 +5,7 @@ import CanvasPhone from "./CanvasPhone";
 import CanvasMatrix from "./CanvasMatrix";
 import { CanvasElementProps } from "./CanvasElementProps.type";
 import { useLanguage } from '@/contexts/LanguageContext';
+import { motion } from 'framer-motion';
 
 const CanvasMap: Record<string, React.ComponentType<CanvasElementProps>> = {
   wave: CanvasWave,
@@ -18,13 +19,15 @@ type Service = {
   icon: string;
   description: string;
   canvas: keyof typeof CanvasMap;
+  price: string;
+  time: string;
 };
 
-const ServiceCard = ({ title, icon, description, canvas }: Service) => {
+const ServiceCard = ({ title, icon, description, canvas, price, time }: Service) => {
   const CanvasComponent = canvas ? CanvasMap[canvas] : null;
 
   return (
-    <div className="retro-card group">
+    <div className="retro-card group flex flex-col h-full">
       <div className="mb-2 flex gap-2 items-center">
         {CanvasComponent && <CanvasComponent width={160} height={200} />}
       </div>
@@ -36,7 +39,37 @@ const ServiceCard = ({ title, icon, description, canvas }: Service) => {
       <h3 className="text-2xl font-mono font-semibold text-solarized-base01 mb-3">
         {title}
       </h3>
-      <p className="text-solarized-base00">{description}</p>
+      <p className="text-solarized-base00 mb-4 flex-grow">{description}</p>
+      
+      {/* Pricing Section with Water Wave Animation */}
+      <div className="mt-auto relative overflow-hidden rounded-md bg-solarized-base2/50 border border-solarized-base1/30">
+        <div className="relative p-4">
+          <div className="flex justify-between items-center">
+            <div className="relative font-mono text-solarized-blue overflow-hidden h-8 min-w-[120px]">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-b from-solarized-blue/20 to-solarized-cyan/20"
+                style={{
+                  clipPath: "polygon(0% 100%, 20% 80%, 40% 100%, 60% 80%, 80% 100%, 100% 80%, 100% 100%, 0% 100%)"
+                }}
+                animate={{
+                  clipPath: [
+                    "polygon(0% 100%, 20% 80%, 40% 100%, 60% 80%, 80% 100%, 100% 80%, 100% 100%, 0% 100%)",
+                    "polygon(0% 60%, 20% 40%, 40% 60%, 60% 40%, 80% 60%, 100% 40%, 100% 100%, 0% 100%)",
+                    "polygon(0% 100%, 20% 80%, 40% 100%, 60% 80%, 80% 100%, 100% 80%, 100% 100%, 0% 100%)"
+                  ]
+                }}
+                transition={{
+                  duration: 6,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                }}
+              />
+              <span className="relative z-10">{price}</span>
+            </div>
+            <div className="font-mono text-solarized-cyan min-w-[100px] text-right">{time}</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -50,24 +83,32 @@ const Services = () => {
       icon: "</> ",
       description: t('services.webDev.description'),
       canvas: "codeWave",
+      price: t('services.webDev.price'),
+      time: t('services.webDev.time'),
     },
     {
       title: t('services.mobileDev.title'),
       icon: "[ ]",
       description: t('services.mobileDev.description'),
       canvas: "phone",
+      price: t('services.mobileDev.price'),
+      time: t('services.mobileDev.time'),
     },
     {
       title: t('services.customSoftware.title'),
       icon: "⌘ ⌥",
       description: t('services.customSoftware.description'),
       canvas: "matrix",
+      price: t('services.customSoftware.price'),
+      time: t('services.customSoftware.time'),
     },
     {
       title: t('services.apiIntegration.title'),
       icon: "↹ ↻",
       description: t('services.apiIntegration.description'),
       canvas: "wave",
+      price: t('services.apiIntegration.price'),
+      time: t('services.apiIntegration.time'),
     },
   ];
 
@@ -84,7 +125,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
@@ -92,6 +133,8 @@ const Services = () => {
               icon={service.icon}
               description={service.description}
               canvas={service.canvas}
+              price={service.price}
+              time={service.time}
             />
           ))}
         </div>

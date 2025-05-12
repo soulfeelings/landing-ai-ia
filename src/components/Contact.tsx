@@ -4,32 +4,77 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const Contact = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
-  const [formState, setFormState] = useState({
+  const [formData, setFormData] = useState({
     name: '',
+    contactMethod: 'email',
     email: '',
+    phone: '',
+    telegram: '',
+    whatsapp: '',
     subject: '',
     message: ''
   });
-  
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    toast({
-      title: t('contact.success.title'),
-      description: t('contact.success.description'),
-      duration: 5000,
-    });
+    setStatus('loading');
+
+    try {
+      const response = await fetch('http://localhost:3000/api/send-message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        setFormData({ 
+          name: '', 
+          contactMethod: 'email',
+          email: '', 
+          phone: '',
+          telegram: '',
+          whatsapp: '',
+          subject: '', 
+          message: '' 
+        });
+        toast({
+          title: t('contact.success.title'),
+          description: t('contact.success.description'),
+          duration: 5000,
+        });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setStatus('error');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormState(prev => ({
-      ...prev,
-      [e.target.id]: e.target.value
-    }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleContactMethodChange = (value: string) => {
+    setFormData(prev => ({ ...prev, contactMethod: value }));
   };
 
   return (
@@ -60,8 +105,8 @@ const Contact = () => {
                     <span className="text-solarized-green">$</span>
                     <span className="ml-2">{t('contact.form.name')}</span>
                     <Input 
-                      id="name"
-                      value={formState.name}
+                      name="name"
+                      value={formData.name}
                       onChange={handleChange}
                       className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
                       placeholder={t('contact.form.namePlaceholder')}
@@ -72,25 +117,95 @@ const Contact = () => {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
                     <span className="text-solarized-green">$</span>
-                    <span className="ml-2">{t('contact.form.email')}</span>
-                    <Input 
-                      id="email"
-                      type="email"
-                      value={formState.email}
-                      onChange={handleChange}
-                      className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
-                      placeholder={t('contact.form.emailPlaceholder')}
-                    />
+                    <span className="ml-2">contact_method</span>
+                    <Select value={formData.contactMethod} onValueChange={handleContactMethodChange}>
+                      <SelectTrigger className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus:ring-0 focus:ring-offset-0 text-sm sm:text-base">
+                        <SelectValue placeholder="Select contact method" className="text-solarized-base1" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-solarized-base02 border border-solarized-cyan/20">
+                        <SelectItem value="email" className="text-solarized-base1 hover:bg-solarized-base03 focus:bg-solarized-base03">email</SelectItem>
+                        <SelectItem value="phone" className="text-solarized-base1 hover:bg-solarized-base03 focus:bg-solarized-base03">phone</SelectItem>
+                        <SelectItem value="telegram" className="text-solarized-base1 hover:bg-solarized-base03 focus:bg-solarized-base03">telegram</SelectItem>
+                        <SelectItem value="whatsapp" className="text-solarized-base1 hover:bg-solarized-base03 focus:bg-solarized-base03">whatsapp</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
+
+                {formData.contactMethod === 'email' && (
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
+                      <span className="text-solarized-green">$</span>
+                      <span className="ml-2">{t('contact.form.email')}</span>
+                      <Input 
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
+                        placeholder={t('contact.form.emailPlaceholder')}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {formData.contactMethod === 'phone' && (
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
+                      <span className="text-solarized-green">$</span>
+                      <span className="ml-2">user.phone</span>
+                      <Input 
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
+                        placeholder="+7 (___) ___-__-__"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {formData.contactMethod === 'telegram' && (
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
+                      <span className="text-solarized-green">$</span>
+                      <span className="ml-2">user.telegram</span>
+                      <Input 
+                        name="telegram"
+                        value={formData.telegram}
+                        onChange={handleChange}
+                        className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
+                        placeholder="@username"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {formData.contactMethod === 'whatsapp' && (
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
+                      <span className="text-solarized-green">$</span>
+                      <span className="ml-2">user.whatsapp</span>
+                      <Input 
+                        name="whatsapp"
+                        type="tel"
+                        value={formData.whatsapp}
+                        onChange={handleChange}
+                        className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
+                        placeholder="+7 (___) ___-__-__"
+                      />
+                    </div>
+                  </div>
+                )}
 
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
                     <span className="text-solarized-green">$</span>
                     <span className="ml-2">{t('contact.form.subject')}</span>
                     <Input 
-                      id="subject"
-                      value={formState.subject}
+                      name="subject"
+                      value={formData.subject}
                       onChange={handleChange}
                       className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
                       placeholder={t('contact.form.subjectPlaceholder')}
@@ -104,8 +219,8 @@ const Contact = () => {
                     <span className="ml-2">{t('contact.form.message')}</span>
                   </div>
                   <Textarea 
-                    id="message"
-                    value={formState.message}
+                    name="message"
+                    value={formData.message}
                     onChange={handleChange}
                     className="mt-2 bg-solarized-base02/50 border-b border-solarized-cyan/20 rounded-none text-solarized-base1 min-h-[120px] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
                     placeholder={t('contact.form.messagePlaceholder')}
@@ -116,11 +231,24 @@ const Contact = () => {
                   </div>
                 </div>
 
+                {status === 'success' && (
+                  <div className="text-solarized-green font-mono text-sm">
+                    {t('contact.success.title')}
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div className="text-solarized-red font-mono text-sm">
+                    Error sending message. Please try again.
+                  </div>
+                )}
+
                 <Button 
                   type="submit" 
                   className="w-full bg-solarized-green hover:bg-solarized-green/90 text-solarized-base03 font-mono mt-4 text-sm sm:text-base"
+                  disabled={status === 'loading'}
                 >
-                  {t('contact.form.submit')}
+                  {status === 'loading' ? 'Sending...' : t('contact.form.submit')}
                 </Button>
               </div>
             </div>
