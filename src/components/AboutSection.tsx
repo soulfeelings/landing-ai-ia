@@ -24,9 +24,6 @@ const AboutSection = () => {
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-solarized-base01 mb-4 sm:mb-6 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed reveal-on-scroll opacity-0">
               {t('about.description')}
             </p>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-solarized-base01 mb-4 sm:mb-6 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed reveal-on-scroll opacity-0">
-              {t('about.history')}
-            </p>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-solarized-base01 mb-6 sm:mb-8 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed reveal-on-scroll opacity-0">
               {t('about.approach')}
             </p>
@@ -35,7 +32,6 @@ const AboutSection = () => {
 
         {/* Team Section */}
         <div className="mt-12 sm:mt-16 md:mt-20">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-mono text-solarized-base01 mb-6 sm:mb-8 md:mb-12 text-center">{t('team.title')}</h2>
           <p className="text-lg sm:text-xl md:text-2xl font-mono text-solarized-blue mb-8 sm:mb-10 md:mb-12 text-center">{t('team.subtitle')}</p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-2xl mx-auto">

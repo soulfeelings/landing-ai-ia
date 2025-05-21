@@ -16,25 +16,19 @@ const CanvasMap: Record<string, React.ComponentType<CanvasElementProps>> = {
 
 type Service = {
   title: string;
-  icon: string;
   description: string;
   canvas: keyof typeof CanvasMap;
   price: string;
   time: string;
 };
 
-const ServiceCard = ({ title, icon, description, canvas, price, time }: Service) => {
+const ServiceCard = ({ title, description, canvas, price, time }: Service) => {
   const CanvasComponent = canvas ? CanvasMap[canvas] : null;
 
   return (
     <div className="retro-card group flex flex-col h-full">
       <div className="mb-2 flex gap-2 items-center">
         {CanvasComponent && <CanvasComponent width={160} height={200} />}
-      </div>
-      <div className="mb-4 text-6xl text-solarized-base01 group-hover:text-solarized-blue transition-colors">
-        <div className="bg-solarized-base2 inline-block p-4 rounded-md border border-solarized-base1/30">
-          {icon}
-        </div>
       </div>
       <h3 className="text-2xl font-mono font-semibold text-solarized-base01 mb-3">
         {title}
@@ -80,7 +74,6 @@ const Services = () => {
   const services: Service[] = [
     {
       title: t('services.webDev.title'),
-      icon: "</> ",
       description: t('services.webDev.description'),
       canvas: "codeWave",
       price: t('services.webDev.price'),
@@ -88,7 +81,6 @@ const Services = () => {
     },
     {
       title: t('services.mobileDev.title'),
-      icon: "[ ]",
       description: t('services.mobileDev.description'),
       canvas: "phone",
       price: t('services.mobileDev.price'),
@@ -96,7 +88,6 @@ const Services = () => {
     },
     {
       title: t('services.customSoftware.title'),
-      icon: "⌘ ⌥",
       description: t('services.customSoftware.description'),
       canvas: "matrix",
       price: t('services.customSoftware.price'),
@@ -104,7 +95,6 @@ const Services = () => {
     },
     {
       title: t('services.apiIntegration.title'),
-      icon: "↹ ↻",
       description: t('services.apiIntegration.description'),
       canvas: "wave",
       price: t('services.apiIntegration.price'),
@@ -130,7 +120,6 @@ const Services = () => {
             <ServiceCard
               key={index}
               title={service.title}
-              icon={service.icon}
               description={service.description}
               canvas={service.canvas}
               price={service.price}

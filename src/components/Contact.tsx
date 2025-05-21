@@ -17,13 +17,12 @@ const Contact = () => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
-    contactMethod: 'email',
     email: '',
+    message: '',
+    contactMethod: 'email',
     phone: '',
     telegram: '',
-    whatsapp: '',
-    subject: '',
-    message: ''
+    whatsapp: ''
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -44,21 +43,20 @@ const Contact = () => {
 
       if (data.success) {
         setStatus('success');
-        setFormData({ 
-          name: '', 
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
           contactMethod: 'email',
-          email: '', 
           phone: '',
           telegram: '',
-          whatsapp: '',
-          subject: '', 
-          message: '' 
+          whatsapp: ''
         });
-        toast({
-          title: t('contact.success.title'),
-          description: t('contact.success.description'),
-          duration: 5000,
-        });
+    toast({
+      title: t('contact.success.title'),
+      description: t('contact.success.description'),
+      duration: 5000,
+    });
       } else {
         setStatus('error');
       }
@@ -68,9 +66,12 @@ const Contact = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleContactMethodChange = (value: string) => {
@@ -133,20 +134,20 @@ const Contact = () => {
                 </div>
 
                 {formData.contactMethod === 'email' && (
-                  <div className="flex flex-col gap-1">
-                    <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
-                      <span className="text-solarized-green">$</span>
-                      <span className="ml-2">{t('contact.form.email')}</span>
-                      <Input 
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
+                    <span className="text-solarized-green">$</span>
+                    <span className="ml-2">{t('contact.form.email')}</span>
+                    <Input 
                         name="email"
-                        type="email"
+                      type="email"
                         value={formData.email}
-                        onChange={handleChange}
-                        className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
-                        placeholder={t('contact.form.emailPlaceholder')}
-                      />
-                    </div>
+                      onChange={handleChange}
+                      className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
+                      placeholder={t('contact.form.emailPlaceholder')}
+                    />
                   </div>
+                </div>
                 )}
 
                 {formData.contactMethod === 'phone' && (
@@ -167,19 +168,19 @@ const Contact = () => {
                 )}
 
                 {formData.contactMethod === 'telegram' && (
-                  <div className="flex flex-col gap-1">
-                    <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
-                      <span className="text-solarized-green">$</span>
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
+                    <span className="text-solarized-green">$</span>
                       <span className="ml-2">user.telegram</span>
-                      <Input 
+                    <Input 
                         name="telegram"
                         value={formData.telegram}
-                        onChange={handleChange}
-                        className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
+                      onChange={handleChange}
+                      className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
                         placeholder="@username"
-                      />
-                    </div>
+                    />
                   </div>
+                </div>
                 )}
 
                 {formData.contactMethod === 'whatsapp' && (
@@ -200,20 +201,6 @@ const Contact = () => {
                 )}
 
                 <div className="flex flex-col gap-1">
-                  <div className="flex items-center text-solarized-base1 text-sm sm:text-base">
-                    <span className="text-solarized-green">$</span>
-                    <span className="ml-2">{t('contact.form.subject')}</span>
-                    <Input 
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="flex-1 ml-2 bg-transparent border-b border-solarized-cyan/20 rounded-none text-solarized-base1 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
-                      placeholder={t('contact.form.subjectPlaceholder')}
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-1">
                   <div className="flex items-start text-solarized-base1 text-sm sm:text-base">
                     <span className="text-solarized-green">$</span>
                     <span className="ml-2">{t('contact.form.message')}</span>
@@ -225,10 +212,6 @@ const Contact = () => {
                     className="mt-2 bg-solarized-base02/50 border-b border-solarized-cyan/20 rounded-none text-solarized-base1 min-h-[120px] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-solarized-base01/50 text-sm sm:text-base"
                     placeholder={t('contact.form.messagePlaceholder')}
                   />
-                  <div className="flex text-solarized-base1 text-sm sm:text-base">
-                    <span className="text-solarized-green">$</span>
-                    <span className="ml-2">"""</span>
-                  </div>
                 </div>
 
                 {status === 'success' && (
@@ -240,7 +223,7 @@ const Contact = () => {
                 {status === 'error' && (
                   <div className="text-solarized-red font-mono text-sm">
                     Error sending message. Please try again.
-                  </div>
+                </div>
                 )}
 
                 <Button 

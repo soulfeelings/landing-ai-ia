@@ -41,8 +41,8 @@ export const translations = {
       apiIntegration: {
         title: "API Integration",
         description: "Seamless integration of third-party services and platforms into your existing systems.",
-        price: "custom pricing",
-        time: "based on requirements"
+        price: "from $30",
+        time: "from 1 day"
       }
     },
     process: {
@@ -70,7 +70,6 @@ export const translations = {
       subtitle: "Who We",
       subtitleHighlight: "Are",
       description: "ByteCraft is a team of passionate technologists and creatives who love building innovative web solutions.",
-      history: "Founded in 2018, we've helped dozens of businesses transform their digital presence and operations through custom web applications, stunning websites, and strategic digital solutions.",
       approach: "Our approach combines technical excellence with creative problem-solving to deliver results that exceed expectations and drive real business value."
     },
     team: {
@@ -109,24 +108,22 @@ export const translations = {
     },
     contact: {
       title: "CONTACT TERMINAL",
-      subtitle: "Initialize Connection",
+      subtitle: "Initialize",
       subtitleHighlight: "Connection",
-      tagline: "$ establish_contact --secure --channel=direct",
+      tagline: "",
       form: {
         name: "user.name = ",
         namePlaceholder: "John Doe",
         email: "user.email = ",
         emailPlaceholder: "john@example.com",
-        subject: "message.subject = ",
-        subjectPlaceholder: "Your quest",
         message: "message.body = ",
-        messagePlaceholder: "Enter your message here...",
+        messagePlaceholder: "Enter your request here...",
         submit: "Send Request",
         alternative: "Alternative contact: ",
         emailAddress: "echo \"Hello\" | mail -s \"Contact\" hello@bytecraft.dev"
       },
       success: {
-        title: "Message sent successfully!",
+        title: "Message sent!",
         description: "Thank you for your message. We'll get back to you soon."
       }
     },
@@ -159,6 +156,26 @@ export const translations = {
       careers: {
         title: "Join the Team",
         message: "If you think you belong with us, write to @TheLABL on Telegram."
+      }
+    },
+    projects: {
+      title: "OUR PROJECTS",
+      subtitle: "What We",
+      subtitleHighlight: "Built",
+      tagline: "$ showcase_projects --type=portfolio",
+      viewProject: "View Project",
+      modal: {
+        close: "Close",
+        technologies: "Technologies",
+        description: "Description",
+        features: "Features",
+        client: "Client",
+        duration: "Duration"
+      },
+      descriptions: {
+        mortalCoin: "We developed an interactive Telegram game in the style of fighting games, where players bet on which cryptocurrency will grow the most in 10 seconds. The winner is the one who predicts market movements most accurately, earning in-game currency and climbing the leaderboard. Players noted the adrenaline rush from quick bets and the simplicity of the mechanics. The project proved that even complex financial concepts can be presented as an exciting challenge.",
+        jiraGamification: "We created an innovative Jira plugin that turns routine work tasks into an engaging 3D game. Employees earn virtual currency for completing tasks, increase their ranking, and customize 3D avatars, making the workflow more motivating and visually appealing. The project showed that even in corporate tools, gamification can significantly improve productivity.",
+        sparklyTasks: "We developed an interactive web app that helps parents motivate children to complete daily tasks. Parents can add tasks (like cleaning a room or doing homework), and children receive rewards—points or virtual goodies that can be exchanged for real prizes. The app was successfully tested in several families, where increased motivation and improved parent-child interaction were noted."
       }
     }
   },
@@ -204,8 +221,8 @@ export const translations = {
       apiIntegration: {
         title: "API Интеграция",
         description: "Безупречная интеграция сторонних сервисов и платформ в ваши существующие системы.",
-        price: "цена рассчитывается под задачу",
-        time: "сроки по согласованию"
+        price: "от 3.000 ₽",
+        time: "от 1 дня"
       }
     },
     process: {
@@ -233,7 +250,6 @@ export const translations = {
       subtitle: "Кто мы",
       subtitleHighlight: "есть",
       description: "ByteCraft - это команда увлеченных технологов и креативщиков, которые любят создавать инновационные веб-решения.",
-      history: "Основанная в 2018 году, мы помогли десяткам компаний трансформировать их цифровое присутствие и операции с помощью кастомных веб-приложений, впечатляющих веб-сайтов и стратегических цифровых решений.",
       approach: "Наш подход сочетает техническое совершенство с креативным решением проблем, чтобы обеспечить результаты, превышающие ожидания и приносящие реальную бизнес-ценность."
     },
     team: {
@@ -280,10 +296,8 @@ export const translations = {
         namePlaceholder: "Иван Иванов",
         email: "user.email = ",
         emailPlaceholder: "ivan@example.com",
-        subject: "message.subject = ",
-        subjectPlaceholder: "Ваш запрос",
         message: "message.body = ",
-        messagePlaceholder: "Введите ваше сообщение здесь...",
+        messagePlaceholder: "Введите Ваш запрос здесь...",
         submit: "Отправить заявку",
         alternative: "Альтернативный контакт: ",
         emailAddress: "echo \"Привет\" | mail -s \"Контакт\" hello@bytecraft.dev"
@@ -322,6 +336,21 @@ export const translations = {
       careers: {
         title: "Присоединяйся к команде",
         message: "Если ты думаешь, что тебе к нам — пиши @TheLABL в Telegram."
+      }
+    },
+    projects: {
+      title: "НАШИ ПРОЕКТЫ",
+      subtitle: "Что мы",
+      subtitleHighlight: "создали",
+      tagline: "$ показать_проекты --тип=портфолио",
+      viewProject: "Смотреть проект",
+      modal: {
+        close: "Закрыть",
+        technologies: "Технологии",
+        description: "Описание",
+        features: "Возможности",
+        client: "Клиент",
+        duration: "Сроки"
       }
     }
   }

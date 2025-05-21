@@ -8,15 +8,23 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+dist
+dist/*
+.DS_Store
+*.pem
 
-dist-ssr
-*.local
+# local env files
+.env*.local
+.env
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
