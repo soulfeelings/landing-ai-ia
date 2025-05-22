@@ -173,9 +173,56 @@ export const translations = {
         duration: "Duration"
       },
       descriptions: {
-        mortalCoin: "We developed an interactive Telegram game in the style of fighting games, where players bet on which cryptocurrency will grow the most in 10 seconds. The winner is the one who predicts market movements most accurately, earning in-game currency and climbing the leaderboard. Players noted the adrenaline rush from quick bets and the simplicity of the mechanics. The project proved that even complex financial concepts can be presented as an exciting challenge.",
-        jiraGamification: "We created an innovative Jira plugin that turns routine work tasks into an engaging 3D game. Employees earn virtual currency for completing tasks, increase their ranking, and customize 3D avatars, making the workflow more motivating and visually appealing. The project showed that even in corporate tools, gamification can significantly improve productivity.",
-        sparklyTasks: "We developed an interactive web app that helps parents motivate children to complete daily tasks. Parents can add tasks (like cleaning a room or doing homework), and children receive rewards—points or virtual goodies that can be exchanged for real prizes. The app was successfully tested in several families, where increased motivation and improved parent-child interaction were noted."
+        mortalCoin: {
+          title: "Mortal Coin",
+          description: "An exciting Telegram game where players can earn and spend virtual currency, participate in tournaments and competitions.",
+          features: [
+            "Tournament system",
+            "Daily tasks",
+            "Telegram integration",
+            "Real exchange betting",
+            "Security and monetization",
+            "User-friendly interface"
+          ],
+          duration: "3 weeks",
+          overview: "We developed an interactive Telegram game in the style of fighting games, where players bet on which cryptocurrency will grow the most in 10 seconds. The winner is the one who most accurately predicts market movements, earning in-game currency and climbing the leaderboard.",
+          challenges: "The crypto market is volatile, but most games are either too complex for beginners or don't provide a sense of excitement. We needed to create a simple yet engaging format that combines exchange analytics with dynamic gameplay and a competitive element.",
+          solution: "We developed a hybrid architecture combining a centralized system for fast game operations and blockchain for storing valuable assets. We implemented a sharding system for processing large numbers of transactions and created smart contracts for NFT management.",
+          results: "Players noted the adrenaline rush from quick bets and the simplicity of mechanics. The project proved that even complex financial concepts can be presented as an exciting challenge."
+        },
+        jiraGamification: {
+          title: "Jira Gamification Plugin",
+          description: "A Jira plugin that transforms routine tasks into an engaging game, increasing team engagement and productivity.",
+          features: [
+            "Level and experience system",
+            "Task completion achievements",
+            "Leaderboard",
+            "Rewards for regularity",
+            "Jira integration",
+            "Team competitions"
+          ],
+          duration: "3 months",
+          overview: "We developed a Jira plugin that transforms routine work tasks into an engaging 3D game. Employees earn virtual currency for completing tasks, increase their ranking, and customize 3D avatars, making the workflow more motivating and visually appealing.",
+          challenges: "Many teams face low engagement in the Jira task completion process. Dry lists and standard boards don't motivate employees, and the lack of game elements makes work monotonous. We needed to integrate gamification in a way that wouldn't interfere with the main workflow but would complement it.",
+          solution: "The solution includes personalized 3D avatars with a progression and customization system (clothing, accessories, animations) that employees can improve by spending virtual currency earned for completing tasks, meeting deadlines, and helping colleagues. All game mechanics work based on existing Jira data, automatically converting work activities into game achievements, maintaining the team's familiar workflow while significantly increasing engagement and motivation. Technically, the solution is implemented through a lightweight architecture with optimized 3D models, ensuring smooth operation even in the browser version of Jira.",
+          results: "The project showed that even in corporate tools, gamification can significantly improve productivity."
+        },
+        sparklyTasks: {
+          title: "Sparkly Tasks",
+          description: "An interactive application that helps parents motivate children to study, engage in developmental activities, and help around the house through game mechanics and reward systems.",
+          features: [
+            "Minimalist and intuitive UX",
+            "Push notifications and reminders",
+            "Gamification: points, levels, rewards",
+            "Cross-device synchronization",
+            "Task categories and tags"
+          ],
+          duration: "1 week",
+          overview: "We developed an interactive web application that helps parents motivate children to complete daily tasks. Parents can add tasks (like cleaning a room or doing homework), and when children mark them as complete, they receive rewards—points or virtual goodies that can be exchanged for real prizes.",
+          challenges: "The main challenge was to create a highly responsive and pleasant interface that would motivate children to return and complete tasks every day.",
+          solution: "We created an intuitive web application with separate interfaces for parents and children. The parent interface allows easy task setting, reward assignment, and progress tracking, while the children's version is implemented as a game with achievements set by parents, visual representation of earned points, and a prize catalog.",
+          results: "The application was successfully tested in several families, where increased motivation for children to complete tasks and improved parent-child interaction were noted."
+        }
       }
     }
   },
