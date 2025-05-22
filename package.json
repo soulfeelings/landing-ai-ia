@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kiteatkit.github.io/resite/",
+  "homepage": "https://ai-ia.tech/",
   "scripts": {
     "predeploy": "npm run build",
     "dev": "vite",
