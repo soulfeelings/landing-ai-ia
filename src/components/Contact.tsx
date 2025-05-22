@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { API_URL } from "@/constants";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -33,7 +34,7 @@ const Contact = () => {
     setStatus("loading");
 
     try {
-      const response = await fetch("/api/send-message", {
+      const response = await fetch(API_URL + "/api/send-message", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
