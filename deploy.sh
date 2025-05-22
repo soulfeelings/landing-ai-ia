@@ -18,6 +18,7 @@ echo "📤 Copying files to server..."
 scp -r dist/* $USER@$IP:$PATH_TO_PUBLIC_FOLDER/
 scp server.js $USER@$IP:$PATH_TO_SERVER_JS
 scp package.json $USER@$IP:$PATH_TO_PUBLIC_FOLDER/
+scp .env $USER@$IP:$PATH_TO_ENV
 
 # Подключение к серверу и перезапуск приложения
 echo "🚀 Restarting application on server..."
