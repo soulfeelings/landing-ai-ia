@@ -187,7 +187,7 @@ export const translations = {
           duration: "3 weeks",
           overview: "We developed an interactive Telegram game in the style of fighting games, where players bet on which cryptocurrency will grow the most in 10 seconds. The winner is the one who most accurately predicts market movements, earning in-game currency and climbing the leaderboard.",
           challenges: "The crypto market is volatile, but most games are either too complex for beginners or don't provide a sense of excitement. We needed to create a simple yet engaging format that combines exchange analytics with dynamic gameplay and a competitive element.",
-          solution: "We developed a hybrid architecture combining a centralized system for fast game operations and blockchain for storing valuable assets. We implemented a sharding system for processing large numbers of transactions and created smart contracts for NFT management.",
+          solution: "We developed a hybrid architecture combining a centralized system for fast game operations.",
           results: "Players noted the adrenaline rush from quick bets and the simplicity of mechanics. The project proved that even complex financial concepts can be presented as an exciting challenge."
         },
         jiraGamification: {
