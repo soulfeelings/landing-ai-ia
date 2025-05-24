@@ -1,13 +1,13 @@
 import { useToast } from "@/components/ui/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { API_URL } from "@/constants";
-import ContactForm from './ContactForm';
+import ContactForm from "./ContactForm";
 
 const Contact = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
 
-  const handleSubmit = async (formData: any) => {
+  const handleSubmit = async (formData: Record<string, string>) => {
     try {
       const response = await fetch(API_URL + "/api/send-message", {
         method: "POST",
@@ -19,23 +19,24 @@ const Contact = () => {
       const data = await response.json();
       if (data.success) {
         toast({
-          title: t('contact.success.title'),
-          description: t('contact.success.description'),
+          title: t("contact.success.title"),
+          description: t("contact.success.description"),
           duration: 5000,
         });
       } else {
         toast({
-          title: 'Error',
-          description: 'Error sending message. Please try again.',
+          title: "Error",
+          description: "Error sending message. Please try again.",
           duration: 5000,
         });
       }
     } catch (error) {
       toast({
-        title: 'Error',
-        description: 'Error sending message. Please try again.',
+        title: "Error",
+        description: "Error sending message. Please try again.",
         duration: 5000,
       });
+      throw error;
     }
   };
 
