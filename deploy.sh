@@ -17,13 +17,13 @@ npm run build
 echo "📤 Copying files to server..."
 scp -r dist/* $USER@$IP:$PATH_TO_PUBLIC_FOLDER/
 scp server.js $USER@$IP:$PATH_TO_SERVER_JS
-scp package.json $USER@$IP:$PATH_TO_PUBLIC_FOLDER/
+scp package.json $USER@$IP:$PATH_TO_PROJECT_FOLDER/
 scp .env $USER@$IP:$PATH_TO_ENV
 
 # Подключение к серверу и перезапуск приложения
 echo "🚀 Restarting application on server..."
-ssh $USER@$IP << 'ENDSSH'
-cd $PATH_TO_PUBLIC_FOLDER
+ssh $USER@$IP << ENDSSH
+cd $PATH_TO_PROJECT_FOLDER
 npm install --production
 pm2 restart landing || pm2 start server.js --name landing
 ENDSSH
