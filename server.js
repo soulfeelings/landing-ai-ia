@@ -24,21 +24,23 @@ const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: false });
 // Endpoint for sending messages
 app.post("/api/send-message", async (req, res) => {
   try {
-    const { name, email, message, contactMethod, phone, telegram, whatsapp } =
-      req.body;
+    const { name, message, contactMethod, telegram, whatsapp } = req.body;
 
     // Format message for Telegram
     const telegramMessage = `
 🆕 New Contact Form Submission
 
 👤 Name: ${name}
-📧 Email: ${email}
 📱 Contact Method: ${contactMethod}
-${contactMethod === "phone" ? `📞 Phone: ${phone}` : ""}
 ${contactMethod === "telegram" ? `💬 Telegram: ${telegram}` : ""}
 ${contactMethod === "whatsapp" ? `📱 WhatsApp: ${whatsapp}` : ""}
 💬 Message: ${message}
     `;
+    console.log("DEBUG: req.body", req.body);
+    console.log(
+      "DEBUG: process.env.TELEGRAM_CHAT_ID",
+      process.env.TELEGRAM_CHAT_ID
+    );
 
     // Send message to Telegram
     await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, telegramMessage, {
