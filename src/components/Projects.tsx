@@ -386,14 +386,14 @@ const Projects = () => {
                     </div>
 
                     {/* Results Section */}
-                    <div className="bg-solarized-base2/30 rounded-lg p-8">
-                      <h4 className="text-xl font-bold text-solarized-blue font-mono mb-4">
+                    {/* <div className="bg-solarized-base2/30 rounded-lg p-8"> */}
+                    {/* <h4 className="text-xl font-bold text-solarized-blue font-mono mb-4">
                         {language === "en" ? "Results" : "Результаты"}
                       </h4>
                       <p className="text-solarized-base1 leading-relaxed">
                         {selectedProject.detailedDescription.results}
                       </p>
-                    </div>
+                    </div> */}
 
                     {/* Image Gallery */}
                   </div>
