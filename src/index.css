@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&subset=latin,cyrillic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,30 +9,30 @@
     --background: 0 0% 9%;
     --foreground: 0 0% 100%;
 
-    --card: 0 0% 12%;
+    --card: 0 0% 9%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 12%;
+    --popover: 0 0% 9%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 73 100% 61%;
+    --primary: 72 100% 61%;
     --primary-foreground: 0 0% 9%;
 
-    --secondary: 0 0% 20%;
+    --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 70%;
 
-    --accent: 73 100% 61%;
+    --accent: 72 100% 61%;
     --accent-foreground: 0 0% 9%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 73 100% 61%;
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 72 100% 61%;
 
     --radius: 0.5rem;
   }
@@ -43,9 +43,10 @@
   }
 
   body {
-    @apply bg-dark-bg text-dark-text font-sans antialiased;
-    background-image: linear-gradient(to bottom, rgba(23, 23, 23, 0.95), rgba(23, 23, 23, 0.95)),
-                      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23D6FF3F' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    @apply bg-background text-foreground font-sans antialiased;
+    background-color: #171717;
+    background-image: linear-gradient(to bottom, rgba(23, 23, 23, 0.95), rgba(23, 23, 23, 0.98)),
+                      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23D6FF3F' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }
 
@@ -63,7 +64,7 @@
   }
 
   .terminal-text {
-    @apply font-sans text-dark-text;
+    @apply font-mono text-foreground;
     overflow: hidden;
     white-space: nowrap;
     border-right: 2px solid #D6FF3F;
@@ -71,15 +72,15 @@
   }
 
   .retro-card {
-    @apply border border-dark-accent/30 rounded-md p-6 bg-dark-bg/80 backdrop-blur-sm transition-all duration-300;
+    @apply border border-border/30 rounded-md p-6 bg-card/80 backdrop-blur-sm transition-all duration-300;
   }
 
   .retro-card:hover {
-    @apply border-dark-accent/60 shadow-lg transform -translate-y-1;
+    @apply border-primary/60 shadow-lg transform -translate-y-1;
   }
 
   .ascii-box {
-    @apply font-sans text-xs text-dark-text opacity-80 whitespace-pre leading-none;
+    @apply font-mono text-xs text-foreground opacity-80 whitespace-pre leading-none;
   }
 
   .ascii-animation {
@@ -101,11 +102,11 @@
   }
 
   .section-title {
-    @apply text-4xl sm:text-5xl font-bold text-dark-accent mb-6;
+    @apply text-4xl sm:text-5xl font-bold text-primary mb-6;
   }
 
   .section-subtitle {
-    @apply text-xl sm:text-2xl font-sans text-dark-text mb-12;
+    @apply text-xl sm:text-2xl font-mono text-foreground mb-12;
   }
 
   /* Circuit animation styles */
