@@ -4,7 +4,7 @@ import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Projects from '@/components/Projects';
 import Process from '@/components/Process';
-import AboutSection from '@/components/AboutSection';
+// import AboutSection from '@/components/AboutSection';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -37,13 +37,13 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-solarized-base3 relative overflow-hidden">
+    <div className="min-h-screen bg-dark-bg relative overflow-hidden">
       <Header />
       <Hero />
       <Services />
       <Projects />
       <Process />
-      <AboutSection />
+      {/* <AboutSection /> */}
       <Contact />
       <Footer />
     </div>

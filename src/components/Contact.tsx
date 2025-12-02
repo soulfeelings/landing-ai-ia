@@ -44,16 +44,16 @@ const Contact = () => {
     <section id="contact" className="py-12 sm:py-16 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16">
-          <span className="font-mono text-solarized-blue text-sm sm:text-base">
+          <span className="font-sans text-dark-accent text-sm sm:text-base">
             {t("contact.title")}
           </span>
           <h2 className="section-title text-3xl sm:text-4xl md:text-5xl">
             {t("contact.subtitle")}{" "}
-            <span className="text-solarized-green">
+            <span className="text-dark-accent">
               {t("contact.subtitleHighlight")}
             </span>
           </h2>
-          <p className="section-subtitle font-mono text-solarized-base01 text-sm sm:text-base">
+          <p className="section-subtitle font-sans text-dark-text text-sm sm:text-base">
             {t("contact.tagline")}
           </p>
         </div>

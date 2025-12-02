@@ -19,41 +19,41 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-solarized-base03 border-t border-solarized-cyan/20">
+    <footer className="bg-dark-text3 border-t border-dark-accent/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-solarized-blue font-mono text-sm sm:text-base">{t('footer.company.title')}</h3>
-            <p className="text-solarized-base1 text-xs sm:text-sm">{t('footer.description')}</p>
+            <h3 className="text-dark-accent font-sans text-sm sm:text-base">{t('footer.company.title')}</h3>
+            <p className="text-dark-text text-xs sm:text-sm">{t('footer.description')}</p>
             <div className="space-y-2">
               <a
                 href="#about"
-                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
               >
                 {t('footer.company.about')}
               </a>
               <button
                 onClick={() => setIsCareersOpen(true)}
-                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors w-full text-left"
+                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors w-full text-left"
               >
                 {t('footer.company.careers')}
               </button>
               <button
                 onClick={() => handleLegalClick('privacy')}
-                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
               >
                 {t('footer.legal.privacy')}
               </button>
               <button
                 onClick={() => handleLegalClick('terms')}
-                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
               >
                 {t('footer.legal.terms')}
               </button>
               <button
                 onClick={() => handleLegalClick('cookies')}
-                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
               >
                 {t('footer.legal.cookies')}
               </button>
@@ -62,11 +62,11 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-solarized-blue font-mono text-sm sm:text-base">{t('footer.connect.title')}</h3>
+            <h3 className="text-dark-accent font-sans text-sm sm:text-base">{t('footer.connect.title')}</h3>
             <div className="space-y-2">
               <button
                 onClick={() => setIsContactOpen(true)}
-                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
               >
                 {t('footer.connect.contact')}
               </button>
@@ -74,7 +74,7 @@ const Footer = () => {
                 href="https://t.me/TheLABL"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
               >
                 Telegram
               </a>
@@ -82,7 +82,7 @@ const Footer = () => {
                 href="https://wa.me/your_number"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-solarized-base1 hover:text-solarized-blue text-xs sm:text-sm transition-colors"
+                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
               >
                 WhatsApp
               </a>
@@ -91,7 +91,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="space-y-4">
-            <p className="text-solarized-base1 text-xs sm:text-sm">© 2024 ByteCraft. {t('footer.rights')}</p>
+            <p className="text-dark-text text-xs sm:text-sm">© 2024 PrilAPPS. {t('footer.rights')}</p>
           </div>
         </div>
       </div>

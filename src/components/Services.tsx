@@ -30,18 +30,18 @@ const ServiceCard = ({ title, description, canvas, price, time }: Service) => {
       <div className="mb-2 flex gap-2 items-center">
         {CanvasComponent && <CanvasComponent width={160} height={200} />}
       </div>
-      <h3 className="text-2xl font-mono font-semibold text-solarized-base01 mb-3">
+      <h3 className="text-2xl font-sans font-semibold text-dark-text mb-3">
         {title}
       </h3>
-      <p className="text-solarized-base00 mb-4 flex-grow">{description}</p>
+      <p className="text-dark-text mb-4 flex-grow">{description}</p>
       
       {/* Pricing Section with Water Wave Animation */}
-      <div className="mt-auto relative overflow-hidden rounded-md bg-solarized-base2/50 border border-solarized-base1/30">
+      <div className="mt-auto relative overflow-hidden rounded-md bg-dark-bg/50 border border-dark-text/30">
         <div className="relative p-4">
           <div className="flex justify-between items-center">
-            <div className="relative font-mono text-solarized-blue overflow-hidden h-8 min-w-[120px]">
+            <div className="relative font-sans text-dark-accent overflow-hidden h-8 min-w-[120px]">
               <motion.div
-                className="absolute inset-0 bg-gradient-to-b from-solarized-blue/20 to-solarized-cyan/20"
+                className="absolute inset-0 bg-gradient-to-b from-dark-accent/20 to-dark-accent/20"
                 style={{
                   clipPath: "polygon(0% 100%, 20% 80%, 40% 100%, 60% 80%, 80% 100%, 100% 80%, 100% 100%, 0% 100%)"
                 }}
@@ -60,7 +60,7 @@ const ServiceCard = ({ title, description, canvas, price, time }: Service) => {
               />
               <span className="relative z-10">{price}</span>
             </div>
-            <div className="font-mono text-solarized-cyan min-w-[100px] text-right">{time}</div>
+            <div className="font-sans text-dark-accent min-w-[100px] text-right">{time}</div>
           </div>
         </div>
       </div>
@@ -103,12 +103,12 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24 bg-solarized-base2/50">
+    <section id="services" className="py-24 bg-dark-bg/50">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="font-mono text-solarized-blue">{t('services.title')}</span>
+          <span className="font-sans text-dark-accent">{t('services.title')}</span>
           <h2 className="section-title">
-            {t('services.subtitle')} <span className="text-solarized-blue">{t('services.subtitleHighlight')}</span>
+            {t('services.subtitle')} <span className="text-dark-accent">{t('services.subtitleHighlight')}</span>
           </h2>
           <p className="section-subtitle">
             {t('services.tagline')}

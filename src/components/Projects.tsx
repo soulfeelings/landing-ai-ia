@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { translations } from "@/translations";
 
 interface Project {
@@ -194,59 +194,285 @@ const Projects = () => {
         ],
       },
     },
+    // Добавим еще 3 проекта для карусели
+    {
+      id: 4,
+      title: "Project 4",
+      description: language === "en" ? "Coming soon..." : "Скоро...",
+      image: "/priapps-presentation.jpg",
+      technologies: [],
+      features: [],
+      duration: "",
+      detailedDescription: {
+        overview: "",
+        challenges: "",
+        solution: "",
+        results: "",
+        images: [],
+      },
+    },
+    {
+      id: 5,
+      title: "Project 5",
+      description: language === "en" ? "Coming soon..." : "Скоро...",
+      image: "/priapps-presentation.jpg",
+      technologies: [],
+      features: [],
+      duration: "",
+      detailedDescription: {
+        overview: "",
+        challenges: "",
+        solution: "",
+        results: "",
+        images: [],
+      },
+    },
+    {
+      id: 6,
+      title: "Project 6",
+      description: language === "en" ? "Coming soon..." : "Скоро...",
+      image: "/priapps-presentation.jpg",
+      technologies: [],
+      features: [],
+      duration: "",
+      detailedDescription: {
+        overview: "",
+        challenges: "",
+        solution: "",
+        results: "",
+        images: [],
+      },
+    },
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const constraintsRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+
+  // Определяем мобильное устройство
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Дублируем проекты для бесконечной карусели (5 копий для лучшей работы)
+  const infiniteProjects = [...projects, ...projects, ...projects, ...projects, ...projects];
+  const totalProjects = projects.length;
+
+  // Начинаем с середины дублированного массива (третья копия)
+  useEffect(() => {
+    setCurrentIndex(totalProjects * 2);
+  }, [totalProjects]);
+
+  const handlePrevious = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev - 1);
+  };
+
+  const handleNext = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
+  };
+
+  // Сброс позиции для бесконечного эффекта
+  useEffect(() => {
+    if (!isTransitioning) return;
+
+    const timer = setTimeout(() => {
+      setIsTransitioning(false);
+
+      // Если дошли до конца (4-я копия), перематываем на середину (3-я копия)
+      if (currentIndex >= totalProjects * 3) {
+        setCurrentIndex(totalProjects * 2);
+      }
+      // Если дошли до начала (1-я копия), перематываем на середину (3-я копия)
+      else if (currentIndex < totalProjects) {
+        setCurrentIndex(totalProjects * 2);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [currentIndex, isTransitioning, totalProjects]);
+
+  // Процент сдвига в зависимости от количества видимых элементов
+  const getTranslateX = () => {
+    if (isMobile) {
+      return currentIndex * 100;
+    }
+    return currentIndex * (100 / 4);
+  };
+
   return (
-    <section id="projects" className="py-24 bg-solarized-base2/50">
+    <section id="projects" className="py-24 bg-dark-bg/50 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="font-mono text-solarized-blue text-sm sm:text-base">
+          <span className="font-sans text-dark-accent text-sm sm:text-base">
             {t("projects.title")}
           </span>
           <h2 className="section-title text-3xl sm:text-4xl md:text-5xl">
             {t("projects.subtitle")}{" "}
-            <span className="text-solarized-cyan">
+            <span className="text-dark-accent">
               {t("projects.subtitleHighlight")}
             </span>
           </h2>
-          <p className="section-subtitle font-mono text-solarized-base01 text-sm sm:text-base">
+          <p className="section-subtitle font-sans text-dark-text text-sm sm:text-base">
             {t("projects.tagline")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-solarized-base3 rounded-lg overflow-hidden border border-solarized-base1/20 hover:border-solarized-blue/50 transition-colors"
-            >
-              <div className="aspect-[3/4] relative">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
+        {/* Carousel Container */}
+        <div className="relative">
+          {/* Navigation Buttons - только на десктопе */}
+          <button
+            onClick={handlePrevious}
+            className="hidden md:block absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-dark-accent/20 hover:bg-dark-accent/40 p-3 rounded-full backdrop-blur-sm transition-all"
+            aria-label="Previous"
+          >
+            <ChevronLeft className="w-6 h-6 text-dark-accent" />
+          </button>
+
+          <button
+            onClick={handleNext}
+            className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-dark-accent/20 hover:bg-dark-accent/40 p-3 rounded-full backdrop-blur-sm transition-all"
+            aria-label="Next"
+          >
+            <ChevronRight className="w-6 h-6 text-dark-accent" />
+          </button>
+
+          {/* Carousel Track */}
+          <div className="overflow-hidden">
+            <div className="py-12">
+              <motion.div
+                className="flex"
+                style={{
+                  gap: isMobile ? '0px' : '24px',
+                }}
+                animate={{
+                  x: isMobile
+                    ? `-${currentIndex * 100}%`
+                    : `-${currentIndex * (100 / 4)}%`,
+                }}
+                transition={
+                  isTransitioning
+                    ? {
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }
+                    : {
+                        duration: 0,
+                      }
+                }
+              >
+                {infiniteProjects.map((project, index) => (
+                  <div
+                    key={`${project.id}-${index}`}
+                    className="flex-shrink-0"
+                    style={{
+                      width: isMobile ? '100%' : 'calc(25% - 18px)',
+                    }}
+                  >
+                    <motion.div
+                      whileHover={!isMobile ? { scale: 1.08 } : {}}
+                      transition={{ duration: 0.3 }}
+                      className="px-4"
+                    >
+                      {/* Phone Frame - фиксированные размеры */}
+                      <div className="relative mx-auto" style={{ width: '250px' }}>
+                        {/* Phone Mockup */}
+                        <div className="relative bg-black rounded-[3rem] p-3 shadow-2xl border-[6px] border-gray-900">
+                          {/* Notch */}
+                          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-6 bg-black rounded-b-3xl z-10"></div>
+
+                          {/* Screen */}
+                          <div className="relative bg-dark-bg rounded-[2.5rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+                            {/* Project Screenshot */}
+                            {project.image ? (
+                              <div className="relative w-full h-full">
+                                <img
+                                  src={project.image}
+                                  alt={project.title}
+                                  className="w-full h-full object-cover"
+                                  onError={(e) => {
+                                    // Fallback to placeholder if image fails to load
+                                    e.currentTarget.style.display = 'none';
+                                  }}
+                                />
+                                {/* Overlay with button on hover */}
+                                <div className="absolute inset-0 bg-dark-bg/80 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
+                                  <div className="text-center">
+                                    <h3 className="text-base font-bold text-dark-accent mb-2">
+                                      {project.title}
+                                    </h3>
+                                    <Button
+                                      onClick={() => setSelectedProject(project)}
+                                      size="sm"
+                                      className="bg-dark-accent hover:bg-dark-accent/90 text-dark-bg font-sans text-xs px-4 py-2"
+                                    >
+                                      {t("projects.viewProject")}
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                            ) : (
+                              // Fallback placeholder
+                              <div className="w-full h-full bg-gradient-to-br from-dark-bg to-dark-bg/50 flex items-center justify-center p-6">
+                                <div className="text-center">
+                                  <h3 className="text-base font-bold text-dark-accent mb-2">
+                                    {project.title}
+                                  </h3>
+                                  <p className="text-xs text-dark-text/70 mb-4 line-clamp-3">
+                                    {project.description}
+                                  </p>
+                                  <Button
+                                    onClick={() => setSelectedProject(project)}
+                                    size="sm"
+                                    className="bg-dark-accent hover:bg-dark-accent/90 text-dark-bg font-sans text-xs px-4 py-2"
+                                  >
+                                    {t("projects.viewProject")}
+                                  </Button>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center gap-2 mt-4">
+            {projects.map((_, index) => {
+              const actualIndex = currentIndex % totalProjects;
+              return (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setIsTransitioning(true);
+                    setCurrentIndex(totalProjects * 2 + index);
+                  }}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    actualIndex === index
+                      ? "bg-dark-accent w-8"
+                      : "bg-dark-text/30"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
                 />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-solarized-base01 mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-solarized-base1 text-sm mb-4">
-                  {project.description}
-                </p>
-                <Button
-                  onClick={() => setSelectedProject(project)}
-                  className="w-full bg-solarized-blue hover:bg-solarized-blue/90 text-white font-mono"
-                >
-                  {t("projects.viewProject")}
-                </Button>
-              </div>
-            </motion.div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -254,7 +480,7 @@ const Projects = () => {
         open={!!selectedProject}
         onOpenChange={() => setSelectedProject(null)}
       >
-        <DialogContent className="w-[95%] sm:w-[90%] md:w-[80%] lg:w-[800px] max-h-[90vh] bg-solarized-base3 p-0 overflow-y-auto">
+        <DialogContent className="w-[95%] sm:w-[90%] md:w-[80%] lg:w-[800px] max-h-[90vh] bg-dark-bg p-0 overflow-y-auto">
           {selectedProject && (
             <div className="relative">
               {/* Sticky close button */}
@@ -268,9 +494,9 @@ const Projects = () => {
                   zIndex: 10,
                   float: "right",
                 }}
-                className="m-2 p-2 bg-solarized-base2/80 rounded-full  transition-colors"
+                className="m-2 p-2 bg-dark-bg/80 rounded-full  transition-colors"
               >
-                <X className="w-6 h-6 text-solarized-base01" />
+                <X className="w-6 h-6 text-dark-text" />
               </button>
               <div className="aspect-[3/4] relative">
                 <img
@@ -281,23 +507,23 @@ const Projects = () => {
               </div>
 
               <div className="p-6">
-                <h2 className="text-2xl font-bold text-solarized-base01 mb-4">
+                <h2 className="text-2xl font-bold text-dark-text mb-4">
                   {selectedProject.title}
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="text-solarized-blue font-mono mb-2">
+                    <h3 className="text-dark-accent font-sans mb-2">
                       {t("projects.modal.description")}
                     </h3>
-                    <p className="text-solarized-base1 mb-4">
+                    <p className="text-dark-text mb-4">
                       {selectedProject.description}
                     </p>
 
-                    <h3 className="text-solarized-blue font-mono mb-2">
+                    <h3 className="text-dark-accent font-sans mb-2">
                       {t("projects.modal.features")}
                     </h3>
-                    <ul className="list-disc list-inside text-solarized-base1 mb-4">
+                    <ul className="list-disc list-inside text-dark-text mb-4">
                       {selectedProject.features.map((feature, index) => (
                         <li key={index}>{feature}</li>
                       ))}
@@ -305,10 +531,10 @@ const Projects = () => {
 
                     <div className="space-y-2">
                       <div>
-                        <span className="text-solarized-blue font-mono">
+                        <span className="text-dark-accent font-sans">
                           {t("projects.modal.duration")}:{" "}
                         </span>
-                        <span className="text-solarized-base1">
+                        <span className="text-dark-text">
                           {selectedProject.duration}
                         </span>
                       </div>
@@ -317,8 +543,8 @@ const Projects = () => {
                 </div>
 
                 {/* Detailed Description Section */}
-                <div className="mt-8 border-t border-solarized-base1/20 pt-8">
-                  <h3 className="text-2xl font-bold text-solarized-base01 mb-8 text-center">
+                <div className="mt-8 border-t border-dark-text/20 pt-8">
+                  <h3 className="text-2xl font-bold text-dark-text mb-8 text-center">
                     {language === "en"
                       ? "Detailed Project Description"
                       : "Подробное описание проекта"}
@@ -328,10 +554,10 @@ const Projects = () => {
                     {/* Overview Section */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       <div className="space-y-4">
-                        <h4 className="text-xl font-bold text-solarized-blue font-mono">
+                        <h4 className="text-xl font-bold text-dark-accent font-sans">
                           {language === "en" ? "Overview" : "Обзор"}
                         </h4>
-                        <p className="text-solarized-base1 leading-relaxed">
+                        <p className="text-dark-text leading-relaxed">
                           {selectedProject.detailedDescription.overview}
                         </p>
                       </div>
@@ -348,14 +574,14 @@ const Projects = () => {
                     {/* Challenges Section */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center md:flex-row-reverse">
                       <div className="space-y-4">
-                        <h4 className="text-xl font-bold text-solarized-blue font-mono">
+                        <h4 className="text-xl font-bold text-dark-accent font-sans">
                           {language === "en" ? "Challenges" : "Вызовы"}
                         </h4>
-                        <p className="text-solarized-base1 leading-relaxed">
+                        <p className="text-dark-text leading-relaxed">
                           {selectedProject.detailedDescription.challenges}
                         </p>
                       </div>
-                      <div className="aspect-[3/4] relative rounded-lg overflow-hidden bg-solarized-base2/50">
+                      <div className="aspect-[3/4] relative rounded-lg overflow-hidden bg-dark-bg/50">
                         <img
                           src={selectedProject.detailedDescription.images[1]}
                           alt={`${selectedProject.title} challenges`}
@@ -367,15 +593,15 @@ const Projects = () => {
                     {/* Solution Section */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       <div className="space-y-4">
-                        <h4 className="text-xl font-bold text-solarized-blue font-mono">
+                        <h4 className="text-xl font-bold text-dark-accent font-sans">
                           {language === "en" ? "Solution" : "Решение"}
                         </h4>
-                        <p className="text-solarized-base1 leading-relaxed">
+                        <p className="text-dark-text leading-relaxed">
                           {selectedProject.detailedDescription.solution}
                         </p>
                       </div>
                       {selectedProject.detailedDescription.images[2] && (
-                        <div className="aspect-[3/4] relative rounded-lg overflow-hidden bg-solarized-base2/50">
+                        <div className="aspect-[3/4] relative rounded-lg overflow-hidden bg-dark-bg/50">
                           <img
                             src={selectedProject.detailedDescription.images[2]}
                             alt={`${selectedProject.title} solution`}
@@ -386,11 +612,11 @@ const Projects = () => {
                     </div>
 
                     {/* Results Section */}
-                    {/* <div className="bg-solarized-base2/30 rounded-lg p-8"> */}
-                    {/* <h4 className="text-xl font-bold text-solarized-blue font-mono mb-4">
+                    {/* <div className="bg-dark-bg/30 rounded-lg p-8"> */}
+                    {/* <h4 className="text-xl font-bold text-dark-accent font-sans mb-4">
                         {language === "en" ? "Results" : "Результаты"}
                       </h4>
-                      <p className="text-solarized-base1 leading-relaxed">
+                      <p className="text-dark-text leading-relaxed">
                         {selectedProject.detailedDescription.results}
                       </p>
                     </div> */}

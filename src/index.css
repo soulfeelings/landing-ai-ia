@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&subset=latin,cyrillic&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,33 +6,33 @@
 
 @layer base {
   :root {
-    --background: 44 87% 98%;
-    --foreground: 195 74% 15%;
+    --background: 0 0% 9%;
+    --foreground: 0 0% 100%;
 
-    --card: 44 87% 98%;
-    --card-foreground: 195 74% 15%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 44 87% 98%;
-    --popover-foreground: 195 74% 15%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 192 81% 39%;
-    --primary-foreground: 44 87% 98%;
+    --primary: 73 100% 61%;
+    --primary-foreground: 0 0% 9%;
 
-    --secondary: 44 87% 94%;
-    --secondary-foreground: 195 54% 25%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 44 30% 92%;
-    --muted-foreground: 195 14% 45%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 44 87% 94%;
-    --accent-foreground: 195 54% 25%;
+    --accent: 73 100% 61%;
+    --accent-foreground: 0 0% 9%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 44 87% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 44 30% 90%;
-    --input: 44 30% 90%;
-    --ring: 192 81% 39%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 73 100% 61%;
 
     --radius: 0.5rem;
   }
@@ -43,56 +43,56 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    background-image: linear-gradient(to bottom, rgba(238, 232, 213, 0.8), rgba(253, 246, 227, 0.8)), 
-                      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2393a1a1' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    @apply bg-dark-bg text-dark-text font-sans antialiased;
+    background-image: linear-gradient(to bottom, rgba(23, 23, 23, 0.95), rgba(23, 23, 23, 0.95)),
+                      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23D6FF3F' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }
 
 @layer components {
   .text-glow {
-    text-shadow: 0 0 15px rgba(38, 139, 210, 0.5);
+    text-shadow: 0 0 15px rgba(214, 255, 63, 0.5);
   }
 
   .box-glow {
-    box-shadow: 0 0 15px rgba(38, 139, 210, 0.5);
+    box-shadow: 0 0 15px rgba(214, 255, 63, 0.5);
   }
 
   .border-glow {
-    box-shadow: 0 0 5px rgba(38, 139, 210, 0.5);
+    box-shadow: 0 0 5px rgba(214, 255, 63, 0.5);
   }
-  
+
   .terminal-text {
-    @apply font-mono text-solarized-base01;
+    @apply font-sans text-dark-text;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 2px solid #586e75;
+    border-right: 2px solid #D6FF3F;
     animation: terminal-typing 3.5s steps(40, end), terminal-cursor 0.75s step-end infinite;
   }
-  
+
   .retro-card {
-    @apply border border-solarized-base1/30 rounded-md p-6 bg-solarized-base3/80 backdrop-blur-sm transition-all duration-300;
+    @apply border border-dark-accent/30 rounded-md p-6 bg-dark-bg/80 backdrop-blur-sm transition-all duration-300;
   }
-  
+
   .retro-card:hover {
-    @apply border-solarized-blue/60 shadow-lg transform -translate-y-1;
+    @apply border-dark-accent/60 shadow-lg transform -translate-y-1;
   }
 
   .ascii-box {
-    @apply font-mono text-xs text-solarized-base01 opacity-80 whitespace-pre leading-none;
+    @apply font-sans text-xs text-dark-text opacity-80 whitespace-pre leading-none;
   }
-  
+
   .ascii-animation {
-    filter: drop-shadow(0 0 8px rgba(38, 139, 210, 0.6));
+    filter: drop-shadow(0 0 8px rgba(214, 255, 63, 0.6));
     transform-origin: center;
     animation: pulse 4s ease-in-out infinite alternate;
   }
-  
+
   .ascii-line-animation {
     @apply opacity-25;
     mix-blend-mode: overlay;
-    text-shadow: 0 0 2px rgba(131, 148, 150, 0.3);
-    color: rgba(131, 148, 150, 0.6);
+    text-shadow: 0 0 2px rgba(214, 255, 63, 0.3);
+    color: rgba(214, 255, 63, 0.6);
   }
 
   .scroll-indicator {
@@ -101,26 +101,26 @@
   }
 
   .section-title {
-    @apply text-4xl sm:text-5xl font-bold text-solarized-base01 mb-6;
+    @apply text-4xl sm:text-5xl font-bold text-dark-accent mb-6;
   }
-  
+
   .section-subtitle {
-    @apply text-xl sm:text-2xl font-mono text-solarized-base00 mb-12;
+    @apply text-xl sm:text-2xl font-sans text-dark-text mb-12;
   }
 
   /* Circuit animation styles */
   .circuit-line {
-    stroke: rgba(38, 139, 210, 0.6);
+    stroke: rgba(214, 255, 63, 0.6);
     stroke-width: 1.5;
     fill: none;
     stroke-dasharray: 5;
     stroke-dashoffset: 0;
-    filter: drop-shadow(0 0 2px rgba(38, 139, 210, 0.4));
+    filter: drop-shadow(0 0 2px rgba(214, 255, 63, 0.4));
   }
 
   .circuit-node {
-    fill: rgba(38, 139, 210, 0.8);
-    filter: drop-shadow(0 0 4px rgba(38, 139, 210, 0.6));
+    fill: rgba(214, 255, 63, 0.8);
+    filter: drop-shadow(0 0 4px rgba(214, 255, 63, 0.6));
   }
 }
 

@@ -6,11 +6,11 @@ const MATRIX_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/{}[]|@#$%&*";
 const CanvasMatrix: React.FC<CanvasElementProps> = ({
   width = 120,
   height = 60,
-  color = "#268bd2",
+  color = "#D6FF3F",
   // @ts-expect-error bgColor is not used
-  bgColor = "#fdf6e3",
+  bgColor = "#171717",
   // @ts-expect-error charColor is not used
-  charColor = "#073642",
+  charColor = "#FFFFFF",
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -41,7 +41,7 @@ const CanvasMatrix: React.FC<CanvasElementProps> = ({
       // Полупрозрачный фон для эффекта затухания
       ctx.fillStyle = bgColor + "E6"; // чуть прозрачный
       ctx.fillRect(0, 0, width, height);
-      ctx.font = `bold ${fontSize}px monospace`;
+      ctx.font = `bold ${fontSize}px Inter, sans-serif`;
       ctx.fillStyle = color;
       for (let i = 0; i < columns; i++) {
         const char =

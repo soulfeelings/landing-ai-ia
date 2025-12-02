@@ -5,13 +5,13 @@ const ProcessStep = ({ number, title, description }: { number: number, title: st
   return (
     <div className="flex flex-col sm:flex-row gap-6 items-start">
       <div className="flex-shrink-0">
-        <div className="bg-solarized-base3 border border-solarized-blue/30 w-16 h-16 rounded-full flex items-center justify-center font-mono text-2xl text-solarized-blue shadow-lg">
+        <div className="bg-dark-bg border border-dark-accent/30 w-16 h-16 rounded-full flex items-center justify-center font-sans text-2xl text-dark-accent shadow-lg">
           {number}
         </div>
       </div>
       <div>
-        <h3 className="text-xl font-mono font-semibold text-solarized-base01 mb-2">{title}</h3>
-        <p className="text-solarized-base00">{description}</p>
+        <h3 className="text-xl font-sans font-semibold text-dark-text mb-2">{title}</h3>
+        <p className="text-dark-text">{description}</p>
       </div>
     </div>
   );
@@ -40,8 +40,8 @@ const Process = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-16">
           <div className="md:w-2/5">
-            <span className="font-mono text-solarized-blue">{t('process.title')}</span>
-            <h2 className="section-title">{t('process.subtitle')} <span className="text-solarized-cyan">{t('process.subtitleHighlight')}</span></h2>
+            <span className="font-sans text-dark-accent">{t('process.title')}</span>
+            <h2 className="section-title">{t('process.subtitle')} <span className="text-dark-accent">{t('process.subtitleHighlight')}</span></h2>
             <p className="section-subtitle">{t('process.tagline')}</p>
           </div>
           

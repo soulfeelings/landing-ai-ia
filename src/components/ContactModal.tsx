@@ -53,14 +53,14 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[95%] sm:w-[90%] md:w-[80%] lg:w-[600px] max-h-[90vh] bg-solarized-base3 p-0 overflow-y-auto">
+      <DialogContent className="w-[95%] sm:w-[90%] md:w-[80%] lg:w-[600px] max-h-[90vh] bg-dark-bg p-0 overflow-y-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
           className="text-center max-w-3xl mx-auto mb-4 sm:mb-6 md:mb-8 pt-4 sm:pt-6 px-2 sm:px-4"
         >
-          <span className="font-mono text-solarized-blue text-xs sm:text-sm md:text-base">
+          <span className="font-sans text-dark-accent text-xs sm:text-sm md:text-base">
             {t("contact.title")}
           </span>
         </motion.div>

@@ -183,7 +183,7 @@ const AsciiAnimation: React.FC<AsciiAnimationProps> = ({ speed = 150 }) => {
       
       // Render the canvas
       if (canvasRef.current) {
-        canvasRef.current.innerHTML = '<pre class="font-mono text-xs" style="width: 100%">' + 
+        canvasRef.current.innerHTML = '<pre class="font-sans text-xs" style="width: 100%">' + 
           canvas.map(row => row.join('')).join('\n') + 
           '</pre>';
       }

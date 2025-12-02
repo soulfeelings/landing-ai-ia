@@ -31,7 +31,7 @@ const CanvasCodeWave: React.FC<CanvasElementProps> = ({
       // Волна
       ctx.save();
       ctx.lineWidth = 2;
-      ctx.strokeStyle = "#268bd2";
+      ctx.strokeStyle = "#D6FF3F";
       ctx.beginPath();
       for (let x = 0; x <= width; x += 2) {
         const y =
@@ -46,8 +46,8 @@ const CanvasCodeWave: React.FC<CanvasElementProps> = ({
 
       // Символы кода на волне
       ctx.save();
-      ctx.font = `bold ${18}px monospace`;
-      ctx.fillStyle = "#073642";
+      ctx.font = `bold ${18}px Inter, sans-serif`;
+      ctx.fillStyle = "#FFFFFF";
       for (let i = 0; i < symbolCount; i++) {
         const x = i * symbolSpacing;
         const y =
