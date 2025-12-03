@@ -464,6 +464,8 @@ const Projects = () => {
                                   src={project.image}
                                   alt={project.title}
                                   className="w-full h-full object-cover"
+                                  loading="lazy"
+                                  decoding="async"
                                   onError={(e) => {
                                     // Fallback to placeholder if image fails to load
                                     e.currentTarget.style.display = 'none';
@@ -570,6 +572,8 @@ const Projects = () => {
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 
@@ -632,6 +636,8 @@ const Projects = () => {
                         src={selectedProject.detailedDescription.images[0]}
                         alt={`${selectedProject.title} overview`}
                         className="w-full h-full object-cover rounded-lg"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           e.currentTarget.style.display = "none";
                         }}
@@ -653,6 +659,8 @@ const Projects = () => {
                           src={selectedProject.detailedDescription.images[1]}
                           alt={`${selectedProject.title} challenges`}
                           className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </div>
                     </div>
@@ -673,6 +681,8 @@ const Projects = () => {
                             src={selectedProject.detailedDescription.images[2]}
                             alt={`${selectedProject.title} solution`}
                             className="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                           />
                         </div>
                       )}

@@ -1,15 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Button } from './ui/button';
 import { ChevronDown } from 'lucide-react';
 import CircuitBackground from './CircuitBackground';
-import ContactModal from './ContactModal';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [contactModalOpen, setContactModalOpen] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -130,6 +127,8 @@ const Hero = () => {
                   src="/1.gif"
                   alt="Mobile app interface"
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}
@@ -142,6 +141,8 @@ const Hero = () => {
                   src="/2.gif"
                   alt="Mobile app screens"
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}
@@ -154,6 +155,8 @@ const Hero = () => {
                   src="/3.gif"
                   alt="Mobile app statistics"
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}
@@ -166,6 +169,8 @@ const Hero = () => {
                   src="/4.gif"
                   alt="Development environment"
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}
@@ -185,7 +190,6 @@ const Hero = () => {
           <ChevronDown className="h-4 w-4 sm:h-5 sm:w-5 text-dark-accent animate-bounce" />
         </motion.div>
       </section>
-      <ContactModal isOpen={contactModalOpen} onClose={() => setContactModalOpen(false)} />
     </>
   );
 };
