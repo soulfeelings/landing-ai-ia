@@ -127,8 +127,8 @@ const Hero = () => {
               {/* Top Left - Wide horizontal image (2:1) */}
               <div className="col-span-2 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm">
                 <img
-                  src="/priapps-presentation.jpg"
-                  alt="Laptop development workspace"
+                  src="/1.gif"
+                  alt="Mobile app interface"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
@@ -139,7 +139,7 @@ const Hero = () => {
               {/* Top Right - Tall vertical image (1:2) */}
               <div className="col-span-1 row-span-2 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm">
                 <img
-                  src="/priapps-presentation.jpg"
+                  src="/2.gif"
                   alt="Mobile app screens"
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -151,8 +151,8 @@ const Hero = () => {
               {/* Bottom Left - Square with laptop (1:1) */}
               <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm">
                 <img
-                  src="/priapps-presentation.jpg"
-                  alt="Development close-up"
+                  src="/3.gif"
+                  alt="Mobile app statistics"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
@@ -160,13 +160,16 @@ const Hero = () => {
                 />
               </div>
 
-              {/* Bottom Center - Text block (1:1) */}
-              <div className="col-span-1 row-span-1 rounded-lg border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm flex flex-col items-center justify-center text-center p-2 sm:p-4">
-                <div className="text-dark-text/60 text-xs sm:text-base md:text-xl lg:text-2xl font-light space-y-1 sm:space-y-3">
-                  <div>Web</div>
-                  <div>Android</div>
-                  <div>iOS</div>
-                </div>
+              {/* Bottom Center - Image block (1:1) */}
+              <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm">
+                <img
+                  src="/4.gif"
+                  alt="Development environment"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
               </div>
             </div>
           </motion.div>
