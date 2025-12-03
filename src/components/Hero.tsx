@@ -82,7 +82,7 @@ const Hero = () => {
           <CircuitBackground className={`opacity-50 ${isMobile ? 'opacity-30' : ''}`} />
         </motion.div>
 
-        <div className="container mx-auto z-10 flex flex-col h-full justify-between py-4 sm:py-8 pb-20 sm:pb-8">
+        <div className="container mx-auto z-10 flex flex-col h-full justify-between py-4 sm:py-8 pb-24 sm:pb-16">
           {/* Top Section - Text Content */}
           <div className="text-left mb-auto">
             <motion.h1

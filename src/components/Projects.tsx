@@ -248,6 +248,7 @@ const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const constraintsRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
 
@@ -353,37 +354,61 @@ const Projects = () => {
               <motion.div
                 className="flex"
                 style={{
-                  gap: isMobile ? '0px' : '24px',
+                  cursor: isMobile ? (isDragging ? 'grabbing' : 'grab') : 'default',
+                }}
+                drag={isMobile ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.1}
+                dragMomentum={false}
+                onDragStart={() => setIsDragging(true)}
+                onDragEnd={(e, { offset, velocity }) => {
+                  if (!isMobile) return;
+
+                  const swipeThreshold = 30;
+                  const swipeVelocity = 500;
+
+                  // Определяем направление по смещению или скорости
+                  if (Math.abs(offset.x) > swipeThreshold || Math.abs(velocity.x) > swipeVelocity) {
+                    if (offset.x > 0 || velocity.x > swipeVelocity) {
+                      handlePrevious();
+                    } else if (offset.x < 0 || velocity.x < -swipeVelocity) {
+                      handleNext();
+                    }
+                  }
+
+                  // Небольшая задержка перед сбросом флага, чтобы предотвратить клик
+                  setTimeout(() => setIsDragging(false), 100);
                 }}
                 animate={{
                   x: isMobile
                     ? `-${currentIndex * 100}%`
                     : `-${currentIndex * (100 / 4)}%`,
                 }}
-                transition={
-                  isTransitioning
-                    ? {
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 30,
-                      }
-                    : {
-                        duration: 0,
-                      }
-                }
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                  mass: 0.8,
+                }}
               >
                 {infiniteProjects.map((project, index) => (
                   <div
                     key={`${project.id}-${index}`}
                     className="flex-shrink-0"
                     style={{
-                      width: isMobile ? '100%' : 'calc(25% - 18px)',
+                      width: isMobile ? '100%' : '25%',
+                      paddingRight: isMobile ? '0' : '24px',
                     }}
                   >
                     <motion.div
                       whileHover={!isMobile ? { scale: 1.08 } : {}}
                       transition={{ duration: 0.3 }}
                       className="px-4"
+                      onClick={() => {
+                        if (isMobile && !isDragging) {
+                          setSelectedProject(project);
+                        }
+                      }}
                     >
                       {/* Phone Frame - фиксированные размеры */}
                       <div className="relative mx-auto" style={{ width: '250px' }}>
@@ -413,7 +438,9 @@ const Projects = () => {
                                       {project.title}
                                     </h3>
                                     <Button
-                                      onClick={() => setSelectedProject(project)}
+                                      onClick={() => {
+                                        if (!isDragging) setSelectedProject(project);
+                                      }}
                                       size="sm"
                                       className="bg-dark-accent hover:bg-dark-accent/90 text-dark-bg font-sans text-xs px-4 py-2"
                                     >
@@ -433,7 +460,9 @@ const Projects = () => {
                                     {project.description}
                                   </p>
                                   <Button
-                                    onClick={() => setSelectedProject(project)}
+                                    onClick={() => {
+                                      if (!isDragging) setSelectedProject(project);
+                                    }}
                                     size="sm"
                                     className="bg-dark-accent hover:bg-dark-accent/90 text-dark-bg font-sans text-xs px-4 py-2"
                                   >
