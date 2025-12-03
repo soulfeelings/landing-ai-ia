@@ -251,6 +251,7 @@ const Projects = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [enableTransition, setEnableTransition] = useState(true);
   const constraintsRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
 
@@ -325,15 +326,29 @@ const Projects = () => {
     if (!isTransitioning) return;
 
     const timer = setTimeout(() => {
-      setIsTransitioning(false);
-
       // Если дошли до конца (4-я копия), перематываем на середину (3-я копия)
       if (currentIndex >= totalProjects * 3) {
-        setCurrentIndex(totalProjects * 2);
+        setEnableTransition(false);
+        setTimeout(() => {
+          setCurrentIndex(totalProjects * 2);
+          setTimeout(() => {
+            setEnableTransition(true);
+            setIsTransitioning(false);
+          }, 50);
+        }, 50);
       }
       // Если дошли до начала (1-я копия), перематываем на середину (3-я копия)
       else if (currentIndex < totalProjects) {
-        setCurrentIndex(totalProjects * 2);
+        setEnableTransition(false);
+        setTimeout(() => {
+          setCurrentIndex(totalProjects * 2);
+          setTimeout(() => {
+            setEnableTransition(true);
+            setIsTransitioning(false);
+          }, 50);
+        }, 50);
+      } else {
+        setIsTransitioning(false);
       }
     }, 500);
 
@@ -401,12 +416,18 @@ const Projects = () => {
                     ? `-${currentIndex * 100}%`
                     : `-${currentIndex * (100 / 4)}%`,
                 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 30,
-                  mass: 0.8,
-                }}
+                transition={
+                  enableTransition
+                    ? {
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                        mass: 0.8,
+                      }
+                    : {
+                        duration: 0,
+                      }
+                }
               >
                 {infiniteProjects.map((project, index) => (
                   <div
