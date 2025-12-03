@@ -30,16 +30,16 @@ const ServiceCard = ({ title, description, canvas, price, time }: Service) => {
       <div className="mb-2 flex gap-2 items-center">
         {CanvasComponent && <CanvasComponent width={160} height={200} />}
       </div>
-      <h3 className="text-2xl font-sans font-semibold text-dark-text mb-3">
+      <h3 className="text-xl sm:text-2xl font-sans font-semibold text-dark-text mb-3">
         {title}
       </h3>
       <p className="text-dark-text mb-4 flex-grow">{description}</p>
       
       {/* Pricing Section with Water Wave Animation */}
       <div className="mt-auto relative overflow-hidden rounded-md bg-dark-bg/50 border border-dark-text/30">
-        <div className="relative p-4">
-          <div className="flex justify-between items-center">
-            <div className="relative font-sans text-dark-accent overflow-hidden h-8 min-w-[120px]">
+        <div className="relative p-3 sm:p-4">
+          <div className="flex justify-between items-center text-sm sm:text-base">
+            <div className="relative font-sans text-dark-accent overflow-hidden h-8 min-w-[100px] sm:min-w-[120px]">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-b from-dark-accent/20 to-dark-accent/20"
                 style={{
@@ -60,7 +60,7 @@ const ServiceCard = ({ title, description, canvas, price, time }: Service) => {
               />
               <span className="relative z-10">{price}</span>
             </div>
-            <div className="font-sans text-dark-accent min-w-[100px] text-right">{time}</div>
+            <div className="font-sans text-dark-accent min-w-[80px] sm:min-w-[100px] text-right">{time}</div>
           </div>
         </div>
       </div>

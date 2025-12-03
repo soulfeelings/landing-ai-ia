@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <>
       <header className="fixed w-full top-0 z-50 bg-dark-bg/80 backdrop-blur-md border-b border-dark-text/20 py-4">
-        <div className="container mx-auto flex items-center justify-between">
+        <div className="container mx-auto flex items-center justify-between px-4">
           <Link to="/" className="flex items-center">
             <span className="font-sans text-dark-accent text-xl font-semibold">Pril</span>
             <span className="font-sans text-dark-accent ml-1">APPS</span>

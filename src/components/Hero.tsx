@@ -82,17 +82,17 @@ const Hero = () => {
           <CircuitBackground className={`opacity-50 ${isMobile ? 'opacity-30' : ''}`} />
         </motion.div>
 
-        <div className="container mx-auto z-10 flex flex-col h-full justify-between py-8">
+        <div className="container mx-auto z-10 flex flex-col h-full justify-between py-4 sm:py-8 pb-20 sm:pb-8">
           {/* Top Section - Text Content */}
           <div className="text-left mb-auto">
             <motion.h1
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="reveal text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 text-dark-text leading-tight"
+              className="reveal text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-6 text-dark-text leading-tight"
             >
               ПРОФЕССИОНАЛЬНАЯ{' '}
-              <span className="text-glow text-dark-accent block mt-2">
+              <span className="text-glow text-dark-accent block mt-1 sm:mt-2">
                 СТУДИЯ<br />
                 РАЗРАБОТКИ
               </span>
@@ -102,9 +102,9 @@ const Hero = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="reveal mb-8"
+              className="reveal mb-4 sm:mb-8"
             >
-              <div className="flex flex-col gap-2 text-xl sm:text-2xl md:text-3xl text-dark-text/80 font-light">
+              <div className="flex flex-col gap-2 text-lg sm:text-2xl md:text-3xl text-dark-text/80 font-light">
                 <div>Web</div>
                 <div>Android</div>
                 <div>iOS</div>
@@ -119,7 +119,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="reveal relative w-full mt-auto"
           >
-            <div className="grid grid-cols-3 grid-rows-2 gap-4 h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px]">
+            <div className="grid grid-cols-3 grid-rows-2 gap-2 sm:gap-4 h-[240px] sm:h-[400px] md:h-[500px] lg:h-[550px]">
               {/* Top Left - Wide horizontal image (2:1) */}
               <div className="col-span-2 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm">
                 <img
@@ -157,8 +157,8 @@ const Hero = () => {
               </div>
 
               {/* Bottom Center - Text block (1:1) */}
-              <div className="col-span-1 row-span-1 rounded-lg border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm flex flex-col items-center justify-center text-center p-4">
-                <div className="text-dark-text/60 text-base sm:text-lg md:text-xl lg:text-2xl font-light space-y-3">
+              <div className="col-span-1 row-span-1 rounded-lg border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm flex flex-col items-center justify-center text-center p-2 sm:p-4">
+                <div className="text-dark-text/60 text-xs sm:text-base md:text-xl lg:text-2xl font-light space-y-1 sm:space-y-3">
                   <div>Web</div>
                   <div>Android</div>
                   <div>iOS</div>

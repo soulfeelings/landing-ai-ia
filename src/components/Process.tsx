@@ -5,13 +5,13 @@ const ProcessStep = ({ number, title, description }: { number: number, title: st
   return (
     <div className="flex flex-col sm:flex-row gap-6 items-start">
       <div className="flex-shrink-0">
-        <div className="bg-dark-bg border border-dark-accent/30 w-16 h-16 rounded-full flex items-center justify-center font-sans text-2xl text-dark-accent shadow-lg">
+        <div className="bg-dark-bg border border-dark-accent/30 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-sans text-xl sm:text-2xl text-dark-accent shadow-lg">
           {number}
         </div>
       </div>
       <div>
-        <h3 className="text-xl font-sans font-semibold text-dark-text mb-2">{title}</h3>
-        <p className="text-dark-text">{description}</p>
+        <h3 className="text-lg sm:text-xl font-sans font-semibold text-dark-text mb-2">{title}</h3>
+        <p className="text-sm sm:text-base text-dark-text">{description}</p>
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ const AboutSection = () => {
 
         {/* Team Section */}
         <div className="mt-12 sm:mt-16 md:mt-20">
-          <p className="text-lg sm:text-xl md:text-2xl font-sans text-dark-accent mb-8 sm:mb-10 md:mb-12 text-center">{t('team.subtitle')}</p>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-sans text-dark-accent mb-8 sm:mb-10 md:mb-12 text-center">{t('team.subtitle')}</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-2xl mx-auto">
             {/* AI Team Member */}

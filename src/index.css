@@ -102,11 +102,11 @@
   }
 
   .section-title {
-    @apply text-4xl sm:text-5xl font-bold text-primary mb-6;
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-6;
   }
 
   .section-subtitle {
-    @apply text-xl sm:text-2xl font-mono text-foreground mb-12;
+    @apply text-base sm:text-xl md:text-2xl font-mono text-foreground mb-12;
   }
 
   /* Circuit animation styles */
