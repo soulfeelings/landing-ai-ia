@@ -249,6 +249,8 @@ const Projects = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const constraintsRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
 
@@ -281,6 +283,41 @@ const Projects = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => prev + 1);
+  };
+
+  // Минимальное расстояние свайпа для срабатывания
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    if (!isMobile) return;
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (!isMobile) return;
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!isMobile || !touchStart || !touchEnd) {
+      setIsDragging(false);
+      return;
+    }
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrevious();
+    }
+
+    // Небольшая задержка перед сбросом флага
+    setTimeout(() => setIsDragging(false), 100);
   };
 
   // Сброс позиции для бесконечного эффекта
@@ -356,29 +393,9 @@ const Projects = () => {
                 style={{
                   cursor: isMobile ? (isDragging ? 'grabbing' : 'grab') : 'default',
                 }}
-                drag={isMobile ? "x" : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.1}
-                dragMomentum={false}
-                onDragStart={() => setIsDragging(true)}
-                onDragEnd={(e, { offset, velocity }) => {
-                  if (!isMobile) return;
-
-                  const swipeThreshold = 30;
-                  const swipeVelocity = 500;
-
-                  // Определяем направление по смещению или скорости
-                  if (Math.abs(offset.x) > swipeThreshold || Math.abs(velocity.x) > swipeVelocity) {
-                    if (offset.x > 0 || velocity.x > swipeVelocity) {
-                      handlePrevious();
-                    } else if (offset.x < 0 || velocity.x < -swipeVelocity) {
-                      handleNext();
-                    }
-                  }
-
-                  // Небольшая задержка перед сбросом флага, чтобы предотвратить клик
-                  setTimeout(() => setIsDragging(false), 100);
-                }}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
                 animate={{
                   x: isMobile
                     ? `-${currentIndex * 100}%`
