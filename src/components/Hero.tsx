@@ -91,10 +91,14 @@ const Hero = () => {
               transition={{ duration: 0.8 }}
               className="reveal text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-6 text-dark-text leading-tight"
             >
-              ПРОФЕССИОНАЛЬНАЯ{' '}
+              {t('hero.title.main')}{' '}
               <span className="text-glow text-dark-accent block mt-1 sm:mt-2">
-                СТУДИЯ<br />
-                РАЗРАБОТКИ
+                {t('hero.title.highlight').split('\n').map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    {i < t('hero.title.highlight').split('\n').length - 1 && <br />}
+                  </span>
+                ))}
               </span>
             </motion.h1>
 

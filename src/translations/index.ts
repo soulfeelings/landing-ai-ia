@@ -9,7 +9,10 @@ export const translations = {
     },
     hero: {
       tagline: "$ crafting_the_future_of_web >",
-      title: "Web Solutions for the Future",
+      title: {
+        main: "PROFESSIONAL",
+        highlight: "DEVELOPMENT\nSTUDIO"
+      },
       subtitle: "We craft pixel-perfect interfaces and powerful backends that propel your business into the digital frontier",
       startProject: "Start a Project",
       exploreServices: "Explore Our Services",
@@ -236,7 +239,10 @@ export const translations = {
     },
     hero: {
       tagline: "$ создаем_будущее_веба >",
-      title: "ПРОФЕССИОНАЛЬНАЯ СТУДИЯ РАЗРАБОТКИ",
+      title: {
+        main: "ПРОФЕССИОНАЛЬНАЯ",
+        highlight: "СТУДИЯ\nРАЗРАБОТКИ"
+      },
       subtitle: "Мы создаем идеальные интерфейсы и мощные бэкенды, которые продвигают ваш бизнес в цифровую эпоху",
       startProject: "Начать проект",
       exploreServices: "Наши услуги",
@@ -244,8 +250,8 @@ export const translations = {
     },
     services: {
       title: "НАШИ УСЛУГИ",
-      subtitle: "Что Мы",
-      subtitleHighlight: "Создаем",
+      subtitle: "Что мы",
+      subtitleHighlight: "создаем",
       tagline: "$ технические_решения --для=современных_проблем",
       webDev: {
         title: "Веб-разработка",
