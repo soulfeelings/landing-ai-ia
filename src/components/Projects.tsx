@@ -197,9 +197,11 @@ const Projects = () => {
     // Добавим еще 3 проекта для карусели
     {
       id: 4,
-      title: "Project 4",
-      description: language === "en" ? "Coming soon..." : "Скоро...",
-      image: "/priapps-presentation.jpg",
+      title: "Liberandum",
+      description: language === "en"
+        ? "A comprehensive cryptocurrency analytics platform providing halal analysis and strategies for Islamic finance compliance."
+        : "Комплексная платформа аналитики криптовалют, предоставляющая халяль-анализ и стратегии для соответствия исламским финансовым принципам.",
+      image: "/projects/liberandum/liberandum.jpg",
       technologies: [],
       features: [],
       duration: "",
@@ -215,7 +217,7 @@ const Projects = () => {
       id: 5,
       title: "Project 5",
       description: language === "en" ? "Coming soon..." : "Скоро...",
-      image: "/priapps-presentation.jpg",
+      image: "/projects/b4b/b4b.jpg",
       technologies: [],
       features: [],
       duration: "",
@@ -231,7 +233,7 @@ const Projects = () => {
       id: 6,
       title: "Project 6",
       description: language === "en" ? "Coming soon..." : "Скоро...",
-      image: "/priapps-presentation.jpg",
+      image: "/projects/vikings/vikings.jpg",
       technologies: [],
       features: [],
       duration: "",
