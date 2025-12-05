@@ -113,66 +113,91 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Bottom Section - Images Grid (Full Width) */}
+          {/* Bottom Section - Video Grid (Full Width) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="reveal relative w-full mt-auto"
           >
-            <div className="grid grid-cols-3 grid-rows-2 gap-2 sm:gap-4 h-[240px] sm:h-[400px] md:h-[500px] lg:h-[550px]">
-              {/* Top Left - Wide horizontal image (2:1) */}
-              <div className="col-span-2 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm">
-                <img
-                  src="/1.gif"
-                  alt="Mobile app interface"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
+            {/* Video grid - each block shows a part of the same video */}
+            <div className="grid grid-cols-3 grid-rows-2 gap-2 sm:gap-4 h-[240px] sm:h-[400px] md:h-[500px] lg:h-[550px]" style={{ position: 'relative' }}>
+              {/* Top Left - shows top-left part (2/3 width, 1/2 height) */}
+              <div className="col-span-2 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
+                <video
+                  src="/video.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    minWidth: 'calc(150% + 4px)',
+                    minHeight: 'calc(200% + 2px)',
+                    objectFit: 'cover',
+                    transform: 'translate(0%, 0%)'
                   }}
                 />
               </div>
 
-              {/* Top Right - Tall vertical image (1:2) */}
-              <div className="col-span-1 row-span-2 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm">
-                <img
-                  src="/2.gif"
-                  alt="Mobile app screens"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
+              {/* Top Right - shows right part (1/3 width, full height) */}
+              <div className="col-span-1 row-span-2 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
+                <video
+                  src="/video.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    minWidth: 'calc(300% + 8px)',
+                    minHeight: '100%',
+                    objectFit: 'cover',
+                    transform: 'translate(-66.66%, 0%)'
                   }}
                 />
               </div>
 
-              {/* Bottom Left - Square with laptop (1:1) */}
-              <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm">
-                <img
-                  src="/3.gif"
-                  alt="Mobile app statistics"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
+              {/* Bottom Left - shows bottom-left part (1/3 width, 1/2 height) */}
+              <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
+                <video
+                  src="/video.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    minWidth: 'calc(300% + 8px)',
+                    minHeight: 'calc(200% + 2px)',
+                    objectFit: 'cover',
+                    transform: 'translate(0%, -50%)'
                   }}
                 />
               </div>
 
-              {/* Bottom Center - Image block (1:1) */}
-              <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm">
-                <img
-                  src="/4.gif"
-                  alt="Development environment"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
+              {/* Bottom Center - shows bottom-center part (1/3 width, 1/2 height) */}
+              <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
+                <video
+                  src="/video.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    minWidth: 'calc(300% + 8px)',
+                    minHeight: 'calc(200% + 2px)',
+                    objectFit: 'cover',
+                    transform: 'translate(-33.33%, -50%)'
                   }}
                 />
               </div>
