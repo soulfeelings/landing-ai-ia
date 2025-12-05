@@ -6,6 +6,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRefs = useRef<(HTMLCanvasElement | null)[]>([]);
   const [isMobile, setIsMobile] = useState(false);
   const { t } = useLanguage();
 
@@ -13,10 +15,125 @@ const Hero = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let animationId: number;
+    let isDrawing = false;
+
+    const updateCanvasSizes = () => {
+      canvasRefs.current.forEach((canvas) => {
+        if (!canvas) return;
+        const rect = canvas.getBoundingClientRect();
+        // Use device pixel ratio for sharper rendering
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        canvas.style.width = `${rect.width}px`;
+        canvas.style.height = `${rect.height}px`;
+
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.scale(dpr, dpr);
+        }
+      });
+    };
+
+    const drawVideoToCanvas = () => {
+      const canvases = canvasRefs.current;
+
+      // Configuration for each canvas: which part of the video to show
+      const configs = [
+        { sx: 0, sy: 0, sw: 0.667, sh: 0.5 },           // Top Left (2/3 width, 1/2 height)
+        { sx: 0.667, sy: 0, sw: 0.333, sh: 1 },         // Top Right (1/3 width, full height)
+        { sx: 0, sy: 0.5, sw: 0.333, sh: 0.5 },         // Bottom Left (1/3 width, 1/2 height)
+        { sx: 0.333, sy: 0.5, sw: 0.333, sh: 0.5 }      // Bottom Center (1/3 width, 1/2 height)
+      ];
+
+      canvases.forEach((canvas, index) => {
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const config = configs[index];
+        const rect = canvas.getBoundingClientRect();
+
+        if (rect.width === 0 || rect.height === 0) return;
+
+        // Source coordinates in the video
+        const sx = video.videoWidth * config.sx;
+        const sy = video.videoHeight * config.sy;
+        const sw = video.videoWidth * config.sw;
+        const sh = video.videoHeight * config.sh;
+
+        // Clear canvas before drawing
+        ctx.clearRect(0, 0, rect.width, rect.height);
+
+        // Draw the specific portion of the video to fill the entire canvas
+        ctx.drawImage(
+          video,
+          sx, sy, sw, sh,           // Source rectangle
+          0, 0, rect.width, rect.height  // Destination rectangle
+        );
+      });
+
+      if (isDrawing) {
+        animationId = requestAnimationFrame(drawVideoToCanvas);
+      }
+    };
+
+    const startDrawing = () => {
+      if (isDrawing) return;
+      isDrawing = true;
+      drawVideoToCanvas();
+    };
+
+    const handleLoadedMetadata = () => {
+      updateCanvasSizes();
+    };
+
+    const handleCanPlay = () => {
+      updateCanvasSizes();
+      startDrawing();
+    };
+
+    const handleResize = () => {
+      updateCanvasSizes();
+    };
+
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('play', startDrawing);
+    window.addEventListener('resize', handleResize);
+
+    // Initialize with a slight delay to ensure DOM is ready
+    const initTimeout = setTimeout(() => {
+      if (video.readyState >= 3) {
+        handleCanPlay();
+      } else if (video.readyState >= 1) {
+        updateCanvasSizes();
+      }
+    }, 100);
+
+    return () => {
+      isDrawing = false;
+      clearTimeout(initTimeout);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('play', startDrawing);
+      window.removeEventListener('resize', handleResize);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -120,89 +237,54 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="reveal relative w-full mt-auto"
           >
-            {/* Video grid - each block shows a part of the same video */}
+            {/* Hidden video element - loaded once */}
+            <video
+              ref={videoRef}
+              src="/video.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              crossOrigin="anonymous"
+              style={{ display: 'none' }}
+            />
+
+            {/* Video grid - each block shows a part of the same video using canvas */}
             <div className="grid grid-cols-3 grid-rows-2 gap-2 sm:gap-4 h-[240px] sm:h-[400px] md:h-[500px] lg:h-[550px]" style={{ position: 'relative' }}>
               {/* Top Left - shows top-left part (2/3 width, 1/2 height) */}
               <div className="col-span-2 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
-                <video
-                  src="/video.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    minWidth: 'calc(150% + 4px)',
-                    minHeight: 'calc(200% + 2px)',
-                    objectFit: 'cover',
-                    transform: 'translate(0%, 0%)'
-                  }}
+                <canvas
+                  ref={(el) => (canvasRefs.current[0] = el)}
+                  className="w-full h-full"
+                  style={{ display: 'block' }}
                 />
               </div>
 
               {/* Top Right - shows right part (1/3 width, full height) */}
               <div className="col-span-1 row-span-2 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
-                <video
-                  src="/video.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    minWidth: 'calc(300% + 8px)',
-                    minHeight: '100%',
-                    objectFit: 'cover',
-                    transform: 'translate(-66.66%, 0%)'
-                  }}
+                <canvas
+                  ref={(el) => (canvasRefs.current[1] = el)}
+                  className="w-full h-full"
+                  style={{ display: 'block' }}
                 />
               </div>
 
               {/* Bottom Left - shows bottom-left part (1/3 width, 1/2 height) */}
               <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
-                <video
-                  src="/video.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    minWidth: 'calc(300% + 8px)',
-                    minHeight: 'calc(200% + 2px)',
-                    objectFit: 'cover',
-                    transform: 'translate(0%, -50%)'
-                  }}
+                <canvas
+                  ref={(el) => (canvasRefs.current[2] = el)}
+                  className="w-full h-full"
+                  style={{ display: 'block' }}
                 />
               </div>
 
               {/* Bottom Center - shows bottom-center part (1/3 width, 1/2 height) */}
               <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
-                <video
-                  src="/video.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    minWidth: 'calc(300% + 8px)',
-                    minHeight: 'calc(200% + 2px)',
-                    objectFit: 'cover',
-                    transform: 'translate(-33.33%, -50%)'
-                  }}
+                <canvas
+                  ref={(el) => (canvasRefs.current[3] = el)}
+                  className="w-full h-full"
+                  style={{ display: 'block' }}
                 />
               </div>
             </div>
