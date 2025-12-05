@@ -5,6 +5,7 @@ export const translations = {
       process: "Process",
       about: "About",
       team: "Team",
+      projects: "Clients and Projects",
       contact: "Contact"
     },
     hero: {
@@ -235,6 +236,7 @@ export const translations = {
       process: "Процесс",
       about: "О нас",
       team: "Команда",
+      projects: "Клиенты и проекты",
       contact: "Связаться"
     },
     hero: {
