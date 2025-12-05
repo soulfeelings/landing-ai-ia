@@ -130,6 +130,7 @@ const Hero = () => {
                   loop
                   muted
                   playsInline
+                  preload="auto"
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -150,6 +151,7 @@ const Hero = () => {
                   loop
                   muted
                   playsInline
+                  preload="auto"
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -170,6 +172,7 @@ const Hero = () => {
                   loop
                   muted
                   playsInline
+                  preload="auto"
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -190,6 +193,7 @@ const Hero = () => {
                   loop
                   muted
                   playsInline
+                  preload="auto"
                   style={{
                     position: 'absolute',
                     top: 0,
