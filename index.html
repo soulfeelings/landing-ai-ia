@@ -22,6 +22,143 @@
   </head>
 
   <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="preloader-content">
+        <div id="lottie-animation"></div>
+        <h1 class="preloader-title">PrilAPPS</h1>
+      </div>
+    </div>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #171717;
+        overflow: hidden;
+      }
+
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #171717;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+
+      #preloader.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .preloader-content {
+        text-align: center;
+        position: relative;
+      }
+
+      #lottie-animation {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+      }
+
+      .preloader-title {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        color: #D6FF3F;
+        margin-top: 20px;
+        letter-spacing: 0.05em;
+      }
+
+      @media (max-width: 640px) {
+        #lottie-animation {
+          width: 200px;
+          height: 200px;
+        }
+
+        .preloader-title {
+          font-size: 2rem;
+          margin-top: 10px;
+        }
+      }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <script>
+      (function() {
+        const startTime = Date.now();
+        const MIN_DISPLAY_TIME = 2000; // 2 seconds minimum
+        let animationLoaded = false;
+        let videoPreloaded = false;
+        let reactReady = false;
+
+        // Make hidePreloader available globally for React to call
+        window.hidePreloader = function() {
+          reactReady = true;
+          checkAndHidePreloader();
+        };
+
+        // Load Lottie animation
+        fetch('/Circle Shape Morphing animation.json')
+          .then(response => response.json())
+          .then(animationData => {
+            const animation = lottie.loadAnimation({
+              container: document.getElementById('lottie-animation'),
+              renderer: 'svg',
+              loop: true,
+              autoplay: true,
+              animationData: animationData
+            });
+            animationLoaded = true;
+            checkAndHidePreloader();
+          })
+          .catch(err => {
+            console.error('Failed to load animation:', err);
+            animationLoaded = true;
+            checkAndHidePreloader();
+          });
+
+        // Preload video
+        const video = document.createElement('video');
+        video.src = '/video.mp4';
+        video.preload = 'auto';
+        video.addEventListener('canplaythrough', function() {
+          videoPreloaded = true;
+          checkAndHidePreloader();
+        }, { once: true });
+
+        // Fallback: consider everything loaded after 8 seconds
+        setTimeout(() => {
+          if (!videoPreloaded) videoPreloaded = true;
+          if (!reactReady) reactReady = true;
+          checkAndHidePreloader();
+        }, 8000);
+
+        function checkAndHidePreloader() {
+          if (!animationLoaded || !videoPreloaded || !reactReady) return;
+
+          const elapsed = Date.now() - startTime;
+          const remainingTime = Math.max(0, MIN_DISPLAY_TIME - elapsed);
+
+          setTimeout(() => {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('fade-out');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+              preloader.style.display = 'none';
+            }, 500);
+          }, remainingTime);
+        }
+      })();
+    </script>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
