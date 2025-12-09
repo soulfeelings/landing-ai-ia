@@ -27,6 +27,17 @@ const Hero = () => {
 
     let animationId: number;
     let isDrawing = false;
+    let playAttempted = false;
+
+    // Try to play video on user interaction if autoplay failed
+    const handleUserInteraction = () => {
+      if (!playAttempted && video.paused) {
+        video.play().catch(err => {
+          console.log('Play on interaction prevented:', err);
+        });
+        playAttempted = true;
+      }
+    };
 
     const updateCanvasSizes = () => {
       canvasRefs.current.forEach((canvas) => {
@@ -103,6 +114,10 @@ const Hero = () => {
     const handleCanPlay = () => {
       updateCanvasSizes();
       startDrawing();
+      // Force play for Safari/Chrome autoplay policies
+      video.play().catch(err => {
+        console.log('Autoplay prevented:', err);
+      });
     };
 
     const handleResize = () => {
@@ -114,6 +129,10 @@ const Hero = () => {
     video.addEventListener('play', startDrawing);
     window.addEventListener('resize', handleResize);
 
+    // Add user interaction listeners for autoplay fallback
+    document.addEventListener('click', handleUserInteraction, { once: true });
+    document.addEventListener('touchstart', handleUserInteraction, { once: true });
+
     // Initialize with a slight delay to ensure DOM is ready
     const initTimeout = setTimeout(() => {
       if (video.readyState >= 3) {
@@ -121,6 +140,10 @@ const Hero = () => {
       } else if (video.readyState >= 1) {
         updateCanvasSizes();
       }
+      // Attempt to play immediately for browsers that support it
+      video.play().catch(err => {
+        console.log('Initial autoplay prevented:', err);
+      });
     }, 100);
 
     return () => {
@@ -130,6 +153,8 @@ const Hero = () => {
       video.removeEventListener('canplay', handleCanPlay);
       video.removeEventListener('play', startDrawing);
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
       if (animationId) {
         cancelAnimationFrame(animationId);
       }
