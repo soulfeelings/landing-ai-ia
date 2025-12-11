@@ -6,8 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRefs = useRef<(HTMLCanvasElement | null)[]>([]);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [isMobile, setIsMobile] = useState(false);
   const { t } = useLanguage();
 
@@ -22,142 +21,30 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    // Sync all videos
+    const syncVideos = () => {
+      const master = videoRefs.current[0];
+      if (!master) return;
 
-    let animationId: number;
-    let isDrawing = false;
-    let playAttempted = false;
-
-    // Try to play video on user interaction if autoplay failed
-    const handleUserInteraction = () => {
-      if (!playAttempted && video.paused) {
-        video.play().catch(err => {
-          console.log('Play on interaction prevented:', err);
-        });
-        playAttempted = true;
-      }
-    };
-
-    const updateCanvasSizes = () => {
-      canvasRefs.current.forEach((canvas) => {
-        if (!canvas) return;
-        const rect = canvas.getBoundingClientRect();
-        // Use device pixel ratio for sharper rendering
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        canvas.style.width = `${rect.width}px`;
-        canvas.style.height = `${rect.height}px`;
-
-        const ctx = canvas.getContext('2d');
-        if (ctx) {
-          ctx.scale(dpr, dpr);
+      videoRefs.current.forEach((video, i) => {
+        if (i === 0 || !video) return;
+        if (Math.abs(video.currentTime - master.currentTime) > 0.3) {
+          video.currentTime = master.currentTime;
         }
       });
     };
 
-    const drawVideoToCanvas = () => {
-      const canvases = canvasRefs.current;
-
-      // Configuration for each canvas: which part of the video to show
-      const configs = [
-        { sx: 0, sy: 0, sw: 0.667, sh: 0.5 },           // Top Left (2/3 width, 1/2 height)
-        { sx: 0.667, sy: 0, sw: 0.333, sh: 1 },         // Top Right (1/3 width, full height)
-        { sx: 0, sy: 0.5, sw: 0.333, sh: 0.5 },         // Bottom Left (1/3 width, 1/2 height)
-        { sx: 0.333, sy: 0.5, sw: 0.333, sh: 0.5 }      // Bottom Center (1/3 width, 1/2 height)
-      ];
-
-      canvases.forEach((canvas, index) => {
-        if (!canvas) return;
-
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-
-        const config = configs[index];
-        const rect = canvas.getBoundingClientRect();
-
-        if (rect.width === 0 || rect.height === 0) return;
-
-        // Source coordinates in the video
-        const sx = video.videoWidth * config.sx;
-        const sy = video.videoHeight * config.sy;
-        const sw = video.videoWidth * config.sw;
-        const sh = video.videoHeight * config.sh;
-
-        // Clear canvas before drawing
-        ctx.clearRect(0, 0, rect.width, rect.height);
-
-        // Draw the specific portion of the video to fill the entire canvas
-        ctx.drawImage(
-          video,
-          sx, sy, sw, sh,           // Source rectangle
-          0, 0, rect.width, rect.height  // Destination rectangle
-        );
-      });
-
-      if (isDrawing) {
-        animationId = requestAnimationFrame(drawVideoToCanvas);
-      }
+    const playAll = () => {
+      videoRefs.current.forEach(v => v?.play().catch(() => {}));
     };
 
-    const startDrawing = () => {
-      if (isDrawing) return;
-      isDrawing = true;
-      drawVideoToCanvas();
-    };
-
-    const handleLoadedMetadata = () => {
-      updateCanvasSizes();
-    };
-
-    const handleCanPlay = () => {
-      updateCanvasSizes();
-      startDrawing();
-      // Force play for Safari/Chrome autoplay policies
-      video.play().catch(err => {
-        console.log('Autoplay prevented:', err);
-      });
-    };
-
-    const handleResize = () => {
-      updateCanvasSizes();
-    };
-
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
-    video.addEventListener('canplay', handleCanPlay);
-    video.addEventListener('play', startDrawing);
-    window.addEventListener('resize', handleResize);
-
-    // Add user interaction listeners for autoplay fallback
-    document.addEventListener('click', handleUserInteraction, { once: true });
-    document.addEventListener('touchstart', handleUserInteraction, { once: true });
-
-    // Initialize with a slight delay to ensure DOM is ready
-    const initTimeout = setTimeout(() => {
-      if (video.readyState >= 3) {
-        handleCanPlay();
-      } else if (video.readyState >= 1) {
-        updateCanvasSizes();
-      }
-      // Attempt to play immediately for browsers that support it
-      video.play().catch(err => {
-        console.log('Initial autoplay prevented:', err);
-      });
-    }, 100);
+    const interval = setInterval(syncVideos, 200);
+    document.addEventListener('click', playAll, { once: true });
+    setTimeout(playAll, 100);
 
     return () => {
-      isDrawing = false;
-      clearTimeout(initTimeout);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      video.removeEventListener('canplay', handleCanPlay);
-      video.removeEventListener('play', startDrawing);
-      window.removeEventListener('resize', handleResize);
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
+      clearInterval(interval);
+      document.removeEventListener('click', playAll);
     };
   }, []);
 
@@ -262,55 +149,101 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="reveal relative w-full mt-auto"
           >
-            {/* Hidden video element - loaded once */}
-            <video
-              ref={videoRef}
-              src="/video.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              crossOrigin="anonymous"
-              style={{ display: 'none' }}
-            />
+            <div className="relative w-[80%] mx-auto aspect-[3/2]">
+              {/* Каждое видео занимает ВСЮ область и имеет ОДИНАКОВЫЙ размер */}
+              <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-2 sm:gap-4">
+                {/* Block 1: col-span-2, row-span-1 */}
+                <div className="col-span-2 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
+                  <video
+                    ref={(el) => (videoRefs.current[0] = el)}
+                    src="/video.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    style={{
+                      position: 'absolute',
+                      width: 'calc((100vw - 3rem) * 0.72)',
+                      height: 'calc((100vw - 3rem) * 0.72 * 2 / 3)',
+                      maxWidth: '960px',
+                      maxHeight: '640px',
+                      top: 0,
+                      left: 0,
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
 
-            {/* Video grid - each block shows a part of the same video using canvas */}
-            <div className="grid grid-cols-3 grid-rows-2 gap-2 sm:gap-4 h-[240px] sm:h-[400px] md:h-[500px] lg:h-[550px]" style={{ position: 'relative' }}>
-              {/* Top Left - shows top-left part (2/3 width, 1/2 height) */}
-              <div className="col-span-2 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
-                <canvas
-                  ref={(el) => (canvasRefs.current[0] = el)}
-                  className="w-full h-full"
-                  style={{ display: 'block' }}
-                />
-              </div>
+                {/* Block 2: col-span-1, row-span-2 */}
+                <div className="col-span-1 row-span-2 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
+                  <video
+                    ref={(el) => (videoRefs.current[1] = el)}
+                    src="/video.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    style={{
+                      position: 'absolute',
+                      width: 'calc((100vw - 3rem) * 0.72)',
+                      height: '100%',
+                      minHeight: '100%',
+                      maxWidth: '960px',
+                      top: 0,
+                      right: 0,
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
 
-              {/* Top Right - shows right part (1/3 width, full height) */}
-              <div className="col-span-1 row-span-2 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
-                <canvas
-                  ref={(el) => (canvasRefs.current[1] = el)}
-                  className="w-full h-full"
-                  style={{ display: 'block' }}
-                />
-              </div>
+                {/* Block 3: col-span-1, row-span-1 */}
+                <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
+                  <video
+                    ref={(el) => (videoRefs.current[2] = el)}
+                    src="/video.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    style={{
+                      position: 'absolute',
+                      width: 'calc((100vw - 3rem) * 0.72)',
+                      height: 'calc((100vw - 3rem) * 0.72 * 2 / 3)',
+                      maxWidth: '960px',
+                      maxHeight: '640px',
+                      bottom: 0,
+                      left: 0,
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
 
-              {/* Bottom Left - shows bottom-left part (1/3 width, 1/2 height) */}
-              <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
-                <canvas
-                  ref={(el) => (canvasRefs.current[2] = el)}
-                  className="w-full h-full"
-                  style={{ display: 'block' }}
-                />
-              </div>
-
-              {/* Bottom Center - shows bottom-center part (1/3 width, 1/2 height) */}
-              <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
-                <canvas
-                  ref={(el) => (canvasRefs.current[3] = el)}
-                  className="w-full h-full"
-                  style={{ display: 'block' }}
-                />
+                {/* Block 4: col-span-1, row-span-1 */}
+                <div className="col-span-1 row-span-1 rounded-lg overflow-hidden border border-dark-accent/30 bg-dark-bg/50 backdrop-blur-sm relative">
+                  <video
+                    ref={(el) => (videoRefs.current[3] = el)}
+                    src="/video.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    style={{
+                      position: 'absolute',
+                      width: 'calc((100vw - 3rem) * 0.72)',
+                      height: 'calc((100vw - 3rem) * 0.72 * 2 / 3)',
+                      maxWidth: '960px',
+                      maxHeight: '640px',
+                      bottom: 0,
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </motion.div>
