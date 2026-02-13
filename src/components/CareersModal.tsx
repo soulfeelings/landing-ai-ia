@@ -16,7 +16,7 @@ const CareersModal = ({ isOpen, onClose }: CareersModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-[95%] sm:w-[90%] md:w-[80%] lg:w-[800px] max-h-[90vh] bg-dark-bg border border-dark-accent/30 p-0 overflow-y-auto overflow-hidden">
+      <DialogContent className="w-[95%] sm:w-[90%] md:w-[80%] lg:w-[800px] max-h-[90vh] bg-background border border-primary/30 p-0 overflow-y-auto overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -27,10 +27,10 @@ const CareersModal = ({ isOpen, onClose }: CareersModalProps) => {
             <div className="wrapper mb-12">
               <div className="hypno"></div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-sans font-bold text-dark-accent mb-6">
+            <h1 className="text-4xl md:text-5xl font-sans font-bold text-primary mb-6">
               Присоединяйся к команде
             </h1>
-            <p className="text-xl text-dark-text max-w-2xl mb-8">
+            <p className="text-xl text-muted-foreground max-w-2xl mb-8">
               Если ты думаешь, что тебе к нам - пиши @TheLABL в Telegram
             </p>
           </div>
@@ -48,18 +48,18 @@ const CareersModal = ({ isOpen, onClose }: CareersModalProps) => {
             height: 100%;
             border-radius: 50%;
             background: conic-gradient(
-              #D6FF3F 0deg 30deg,
-              #171717 30deg 60deg,
-              #D6FF3F 60deg 90deg,
-              #171717 90deg 120deg,
-              #D6FF3F 120deg 150deg,
-              #171717 150deg 180deg,
-              #D6FF3F 180deg 210deg,
-              #171717 210deg 240deg,
-              #D6FF3F 240deg 270deg,
-              #171717 270deg 300deg,
-              #D6FF3F 300deg 330deg,
-              #171717 330deg 360deg
+              #C66644 0deg 30deg,
+              #1A1614 30deg 60deg,
+              #C66644 60deg 90deg,
+              #1A1614 90deg 120deg,
+              #C66644 120deg 150deg,
+              #1A1614 150deg 180deg,
+              #C66644 180deg 210deg,
+              #1A1614 210deg 240deg,
+              #C66644 240deg 270deg,
+              #1A1614 270deg 300deg,
+              #C66644 300deg 330deg,
+              #1A1614 330deg 360deg
             );
             animation: spin 4s linear infinite;
           }

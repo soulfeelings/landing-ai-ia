@@ -366,19 +366,19 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-24 bg-dark-bg/50 overflow-hidden">
+    <section id="projects" className="py-24 bg-background/50 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="font-sans text-dark-accent text-sm sm:text-base">
+          <span className="font-sans text-primary text-sm sm:text-base">
             {t("projects.title")}
           </span>
           <h2 className="section-title text-3xl sm:text-4xl md:text-5xl">
             {t("projects.subtitle")}{" "}
-            <span className="text-dark-accent">
+            <span className="text-primary">
               {t("projects.subtitleHighlight")}
             </span>
           </h2>
-          <p className="section-subtitle font-sans text-dark-text text-sm sm:text-base">
+          <p className="section-subtitle font-sans text-foreground text-sm sm:text-base">
             {t("projects.tagline")}
           </p>
         </div>
@@ -388,18 +388,18 @@ const Projects = () => {
           {/* Navigation Buttons - только на десктопе */}
           <button
             onClick={handlePrevious}
-            className="hidden md:block absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-dark-accent/20 hover:bg-dark-accent/40 p-3 rounded-full backdrop-blur-sm transition-all"
+            className="hidden md:block absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-primary/20 hover:bg-primary/40 p-3 rounded-full backdrop-blur-sm transition-all"
             aria-label="Previous"
           >
-            <ChevronLeft className="w-6 h-6 text-dark-accent" />
+            <ChevronLeft className="w-6 h-6 text-primary" />
           </button>
 
           <button
             onClick={handleNext}
-            className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-dark-accent/20 hover:bg-dark-accent/40 p-3 rounded-full backdrop-blur-sm transition-all"
+            className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-primary/20 hover:bg-primary/40 p-3 rounded-full backdrop-blur-sm transition-all"
             aria-label="Next"
           >
-            <ChevronRight className="w-6 h-6 text-dark-accent" />
+            <ChevronRight className="w-6 h-6 text-primary" />
           </button>
 
           {/* Carousel Track */}
@@ -458,7 +458,7 @@ const Projects = () => {
                           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-6 bg-black rounded-b-3xl z-10"></div>
 
                           {/* Screen */}
-                          <div className="relative bg-dark-bg rounded-[2.5rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
+                          <div className="relative bg-background rounded-[2.5rem] overflow-hidden" style={{ aspectRatio: '9/19.5' }}>
                             {/* Project Screenshot */}
                             {project.image ? (
                               <div className="relative w-full h-full">
@@ -474,9 +474,9 @@ const Projects = () => {
                                   }}
                                 />
                                 {/* Overlay with button on hover */}
-                                <div className="absolute inset-0 bg-dark-bg/80 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
+                                <div className="absolute inset-0 bg-background/80 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
                                   <div className="text-center">
-                                    <h3 className="text-base font-bold text-dark-accent mb-2">
+                                    <h3 className="text-base font-bold text-primary mb-2">
                                       {project.title}
                                     </h3>
                                     <Button
@@ -484,7 +484,7 @@ const Projects = () => {
                                         if (!isDragging) setSelectedProject(project);
                                       }}
                                       size="sm"
-                                      className="bg-dark-accent hover:bg-dark-accent/90 text-dark-bg font-sans text-xs px-4 py-2"
+                                      className="bg-primary hover:bg-primary/90 text-background font-sans text-xs px-4 py-2"
                                     >
                                       {t("projects.viewProject")}
                                     </Button>
@@ -493,12 +493,12 @@ const Projects = () => {
                               </div>
                             ) : (
                               // Fallback placeholder
-                              <div className="w-full h-full bg-gradient-to-br from-dark-bg to-dark-bg/50 flex items-center justify-center p-6">
+                              <div className="w-full h-full bg-gradient-to-br from-background to-background/50 flex items-center justify-center p-6">
                                 <div className="text-center">
-                                  <h3 className="text-base font-bold text-dark-accent mb-2">
+                                  <h3 className="text-base font-bold text-primary mb-2">
                                     {project.title}
                                   </h3>
-                                  <p className="text-xs text-dark-text/70 mb-4 line-clamp-3">
+                                  <p className="text-xs text-foreground/70 mb-4 line-clamp-3">
                                     {project.description}
                                   </p>
                                   <Button
@@ -506,7 +506,7 @@ const Projects = () => {
                                       if (!isDragging) setSelectedProject(project);
                                     }}
                                     size="sm"
-                                    className="bg-dark-accent hover:bg-dark-accent/90 text-dark-bg font-sans text-xs px-4 py-2"
+                                    className="bg-primary hover:bg-primary/90 text-background font-sans text-xs px-4 py-2"
                                   >
                                     {t("projects.viewProject")}
                                   </Button>
@@ -536,8 +536,8 @@ const Projects = () => {
                   }}
                   className={`w-2 h-2 rounded-full transition-all ${
                     actualIndex === index
-                      ? "bg-dark-accent w-8"
-                      : "bg-dark-text/30"
+                      ? "bg-primary w-8"
+                      : "bg-foreground/30"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -551,7 +551,7 @@ const Projects = () => {
         open={!!selectedProject}
         onOpenChange={() => setSelectedProject(null)}
       >
-        <DialogContent className="w-[95%] sm:w-[90%] md:w-[80%] lg:w-[800px] max-h-[90vh] bg-dark-bg p-0 overflow-y-auto">
+        <DialogContent className="w-[95%] sm:w-[90%] md:w-[80%] lg:w-[800px] max-h-[90vh] bg-background p-0 overflow-y-auto">
           {selectedProject && (
             <div className="relative">
               {/* Sticky close button */}
@@ -565,9 +565,9 @@ const Projects = () => {
                   zIndex: 10,
                   float: "right",
                 }}
-                className="m-2 p-2 bg-dark-bg/80 rounded-full  transition-colors"
+                className="m-2 p-2 bg-background/80 rounded-full  transition-colors"
               >
-                <X className="w-6 h-6 text-dark-text" />
+                <X className="w-6 h-6 text-foreground" />
               </button>
               <div className="aspect-[3/4] relative">
                 <img
@@ -580,23 +580,23 @@ const Projects = () => {
               </div>
 
               <div className="p-6">
-                <h2 className="text-2xl font-bold text-dark-text mb-4">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
                   {selectedProject.title}
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="text-dark-accent font-sans mb-2">
+                    <h3 className="text-primary font-sans mb-2">
                       {t("projects.modal.description")}
                     </h3>
-                    <p className="text-dark-text mb-4">
+                    <p className="text-foreground mb-4">
                       {selectedProject.description}
                     </p>
 
-                    <h3 className="text-dark-accent font-sans mb-2">
+                    <h3 className="text-primary font-sans mb-2">
                       {t("projects.modal.features")}
                     </h3>
-                    <ul className="list-disc list-inside text-dark-text mb-4">
+                    <ul className="list-disc list-inside text-foreground mb-4">
                       {selectedProject.features.map((feature, index) => (
                         <li key={index}>{feature}</li>
                       ))}
@@ -604,10 +604,10 @@ const Projects = () => {
 
                     <div className="space-y-2">
                       <div>
-                        <span className="text-dark-accent font-sans">
+                        <span className="text-primary font-sans">
                           {t("projects.modal.duration")}:{" "}
                         </span>
-                        <span className="text-dark-text">
+                        <span className="text-foreground">
                           {selectedProject.duration}
                         </span>
                       </div>
@@ -616,8 +616,8 @@ const Projects = () => {
                 </div>
 
                 {/* Detailed Description Section */}
-                <div className="mt-8 border-t border-dark-text/20 pt-8">
-                  <h3 className="text-2xl font-bold text-dark-text mb-8 text-center">
+                <div className="mt-8 border-t border-foreground/20 pt-8">
+                  <h3 className="text-2xl font-bold text-foreground mb-8 text-center">
                     {language === "en"
                       ? "Detailed Project Description"
                       : "Подробное описание проекта"}
@@ -627,10 +627,10 @@ const Projects = () => {
                     {/* Overview Section */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       <div className="space-y-4">
-                        <h4 className="text-xl font-bold text-dark-accent font-sans">
+                        <h4 className="text-xl font-bold text-primary font-sans">
                           {language === "en" ? "Overview" : "Обзор"}
                         </h4>
-                        <p className="text-dark-text leading-relaxed">
+                        <p className="text-foreground leading-relaxed">
                           {selectedProject.detailedDescription.overview}
                         </p>
                       </div>
@@ -649,14 +649,14 @@ const Projects = () => {
                     {/* Challenges Section */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center md:flex-row-reverse">
                       <div className="space-y-4">
-                        <h4 className="text-xl font-bold text-dark-accent font-sans">
+                        <h4 className="text-xl font-bold text-primary font-sans">
                           {language === "en" ? "Challenges" : "Вызовы"}
                         </h4>
-                        <p className="text-dark-text leading-relaxed">
+                        <p className="text-foreground leading-relaxed">
                           {selectedProject.detailedDescription.challenges}
                         </p>
                       </div>
-                      <div className="aspect-[3/4] relative rounded-lg overflow-hidden bg-dark-bg/50">
+                      <div className="aspect-[3/4] relative rounded-lg overflow-hidden bg-background/50">
                         <img
                           src={selectedProject.detailedDescription.images[1]}
                           alt={`${selectedProject.title} challenges`}
@@ -670,15 +670,15 @@ const Projects = () => {
                     {/* Solution Section */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       <div className="space-y-4">
-                        <h4 className="text-xl font-bold text-dark-accent font-sans">
+                        <h4 className="text-xl font-bold text-primary font-sans">
                           {language === "en" ? "Solution" : "Решение"}
                         </h4>
-                        <p className="text-dark-text leading-relaxed">
+                        <p className="text-foreground leading-relaxed">
                           {selectedProject.detailedDescription.solution}
                         </p>
                       </div>
                       {selectedProject.detailedDescription.images[2] && (
-                        <div className="aspect-[3/4] relative rounded-lg overflow-hidden bg-dark-bg/50">
+                        <div className="aspect-[3/4] relative rounded-lg overflow-hidden bg-background/50">
                           <img
                             src={selectedProject.detailedDescription.images[2]}
                             alt={`${selectedProject.title} solution`}
@@ -691,11 +691,11 @@ const Projects = () => {
                     </div>
 
                     {/* Results Section */}
-                    {/* <div className="bg-dark-bg/30 rounded-lg p-8"> */}
-                    {/* <h4 className="text-xl font-bold text-dark-accent font-sans mb-4">
+                    {/* <div className="bg-background/30 rounded-lg p-8"> */}
+                    {/* <h4 className="text-xl font-bold text-primary font-sans mb-4">
                         {language === "en" ? "Results" : "Результаты"}
                       </h4>
-                      <p className="text-dark-text leading-relaxed">
+                      <p className="text-foreground leading-relaxed">
                         {selectedProject.detailedDescription.results}
                       </p>
                     </div> */}

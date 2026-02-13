@@ -31,7 +31,7 @@ const CanvasCodeWave: React.FC<CanvasElementProps> = ({
       // Волна
       ctx.save();
       ctx.lineWidth = 2;
-      ctx.strokeStyle = "#D6FF3F";
+      ctx.strokeStyle = "#C66644"; // primary terracotta
       ctx.beginPath();
       for (let x = 0; x <= width; x += 2) {
         const y =
@@ -47,7 +47,7 @@ const CanvasCodeWave: React.FC<CanvasElementProps> = ({
       // Символы кода на волне
       ctx.save();
       ctx.font = `bold ${18}px Inter, sans-serif`;
-      ctx.fillStyle = "#FFFFFF";
+      ctx.fillStyle = "#F5F3F0"; // foreground
       for (let i = 0; i < symbolCount; i++) {
         const x = i * symbolSpacing;
         const y =

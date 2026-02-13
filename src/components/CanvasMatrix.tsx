@@ -6,11 +6,11 @@ const MATRIX_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/{}[]|@#$%&*";
 const CanvasMatrix: React.FC<CanvasElementProps> = ({
   width = 120,
   height = 60,
-  color = "#D6FF3F",
+  color = "#C66644", // primary terracotta
   // @ts-expect-error bgColor is not used
-  bgColor = "#171717",
+  bgColor = "#1A1614", // background
   // @ts-expect-error charColor is not used
-  charColor = "#FFFFFF",
+  charColor = "#F5F3F0", // foreground
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 

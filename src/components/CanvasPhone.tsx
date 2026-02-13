@@ -38,8 +38,8 @@ const CanvasPhone: React.FC<CanvasElementProps> = ({
       // Корпус телефона с волной
       ctx.save();
       ctx.lineWidth = 3;
-      ctx.strokeStyle = "#D6FF3F";
-      ctx.fillStyle = "#171717";
+      ctx.strokeStyle = "#C66644"; // primary terracotta
+      ctx.fillStyle = "#1A1614"; // background
       ctx.beginPath();
       for (let i = 0; i <= 100; i++) {
         const t = i / 100;
@@ -80,8 +80,8 @@ const CanvasPhone: React.FC<CanvasElementProps> = ({
 
       // Экран с волной
       ctx.save();
-      ctx.fillStyle = "#2a2a2a";
-      ctx.strokeStyle = "#D6FF3F";
+      ctx.fillStyle = "#352E2B"; // muted
+      ctx.strokeStyle = "#C66644"; // primary terracotta
       ctx.lineWidth = 2;
       ctx.beginPath();
       for (let i = 0; i <= 100; i++) {
@@ -117,7 +117,7 @@ const CanvasPhone: React.FC<CanvasElementProps> = ({
 
       // Динамик
       ctx.save();
-      ctx.fillStyle = "#D6FF3F";
+      ctx.fillStyle = "#C66644"; // primary terracotta
       ctx.beginPath();
       ctx.roundRect(width / 2 - 10, 10 + wave(frame, 0.7, 0.6, 0.07), 20, 4, 2);
       ctx.fill();
@@ -125,7 +125,7 @@ const CanvasPhone: React.FC<CanvasElementProps> = ({
 
       // Кнопка Home
       ctx.save();
-      ctx.strokeStyle = "#D6FF3F";
+      ctx.strokeStyle = "#C66644"; // primary terracotta
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.arc(

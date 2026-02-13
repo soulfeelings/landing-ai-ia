@@ -85,14 +85,14 @@ const ContactForm = ({ onSubmit, className = "" }: ContactFormProps) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`bg-dark-text3 border border-dark-accent/20 rounded-lg shadow-lg overflow-hidden ${className}`}
+      className={`bg-card border border-primary/20 rounded-lg shadow-lg overflow-hidden ${className}`}
     >
       {/* Terminal Header */}
-      <div className="bg-dark-text2 px-3 sm:px-4 py-2 flex items-center gap-2">
+      <div className="bg-muted px-3 sm:px-4 py-2 flex items-center gap-2">
         <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
         <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
-        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-dark-accent"></div>
-        <span className="ml-2 font-sans text-xs sm:text-sm text-dark-text">
+        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-primary"></div>
+        <span className="ml-2 font-sans text-xs sm:text-sm text-foreground">
           new_message.sh
         </span>
       </div>
@@ -102,43 +102,43 @@ const ContactForm = ({ onSubmit, className = "" }: ContactFormProps) => {
         {/* Command Line Style Inputs */}
         <div className="space-y-3 sm:space-y-4">
           <div className="flex flex-col gap-1">
-            <div className="flex items-center text-dark-text text-sm sm:text-base">
-              <span className="text-dark-accent">$</span>
+            <div className="flex items-center text-foreground text-sm sm:text-base">
+              <span className="text-primary">$</span>
               <span className="ml-2">{t("contact.form.name")}</span>
               <Input
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="flex-1 ml-2 bg-transparent border-b border-dark-accent/20 rounded-none text-dark-text focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-dark-text/50 text-sm sm:text-base"
+                className="flex-1 ml-2 bg-transparent border-b border-primary/20 rounded-none text-foreground focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-foreground/50 text-sm sm:text-base"
                 placeholder={t("contact.form.namePlaceholder")}
               />
             </div>
           </div>
 
           <div className="flex flex-col gap-1">
-            <div className="flex items-center text-dark-text text-sm sm:text-base">
-              <span className="text-dark-accent">$</span>
+            <div className="flex items-center text-foreground text-sm sm:text-base">
+              <span className="text-primary">$</span>
               <span className="ml-2">contact_method</span>
               <Select
                 value={formData.contactMethod}
                 onValueChange={handleContactMethodChange}
               >
-                <SelectTrigger className="flex-1 ml-2 bg-transparent border-b border-dark-accent/20 rounded-none text-dark-text focus:ring-0 focus:ring-offset-0 text-sm sm:text-base">
+                <SelectTrigger className="flex-1 ml-2 bg-transparent border-b border-primary/20 rounded-none text-foreground focus:ring-0 focus:ring-offset-0 text-sm sm:text-base">
                   <SelectValue
                     placeholder="Select contact method"
-                    className="text-dark-text"
+                    className="text-foreground"
                   />
                 </SelectTrigger>
-                <SelectContent className="bg-dark-text2 border border-dark-accent/20">
+                <SelectContent className="bg-muted border border-primary/20">
                   <SelectItem
                     value="telegram"
-                    className="text-dark-text hover:bg-dark-text3 focus:bg-dark-text3"
+                    className="text-foreground hover:bg-card focus:bg-card"
                   >
                     telegram
                   </SelectItem>
                   <SelectItem
                     value="whatsapp"
-                    className="text-dark-text hover:bg-dark-text3 focus:bg-dark-text3"
+                    className="text-foreground hover:bg-card focus:bg-card"
                   >
                     whatsapp
                   </SelectItem>
@@ -149,14 +149,14 @@ const ContactForm = ({ onSubmit, className = "" }: ContactFormProps) => {
 
           {formData.contactMethod === "telegram" && (
             <div className="flex flex-col gap-1">
-              <div className="flex items-center text-dark-text text-sm sm:text-base">
-                <span className="text-dark-accent">$</span>
+              <div className="flex items-center text-foreground text-sm sm:text-base">
+                <span className="text-primary">$</span>
                 <span className="ml-2">user.telegram</span>
                 <Input
                   name="telegram"
                   value={formData.telegram}
                   onChange={handleChange}
-                  className="flex-1 ml-2 bg-transparent border-b border-dark-accent/20 rounded-none text-dark-text focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-dark-text/50 text-sm sm:text-base"
+                  className="flex-1 ml-2 bg-transparent border-b border-primary/20 rounded-none text-foreground focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-foreground/50 text-sm sm:text-base"
                   placeholder="@username"
                 />
               </div>
@@ -165,15 +165,15 @@ const ContactForm = ({ onSubmit, className = "" }: ContactFormProps) => {
 
           {formData.contactMethod === "whatsapp" && (
             <div className="flex flex-col gap-1">
-              <div className="flex items-center text-dark-text text-sm sm:text-base">
-                <span className="text-dark-accent">$</span>
+              <div className="flex items-center text-foreground text-sm sm:text-base">
+                <span className="text-primary">$</span>
                 <span className="ml-2">user.whatsapp</span>
                 <Input
                   name="whatsapp"
                   type="tel"
                   value={formData.whatsapp}
                   onChange={handleChange}
-                  className="flex-1 ml-2 bg-transparent border-b border-dark-accent/20 rounded-none text-dark-text focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-dark-text/50 text-sm sm:text-base"
+                  className="flex-1 ml-2 bg-transparent border-b border-primary/20 rounded-none text-foreground focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-foreground/50 text-sm sm:text-base"
                   placeholder="+7 (___) ___-__-__"
                 />
               </div>
@@ -181,21 +181,21 @@ const ContactForm = ({ onSubmit, className = "" }: ContactFormProps) => {
           )}
 
           <div className="flex flex-col gap-1">
-            <div className="flex items-start text-dark-text text-sm sm:text-base">
-              <span className="text-dark-accent">$</span>
+            <div className="flex items-start text-foreground text-sm sm:text-base">
+              <span className="text-primary">$</span>
               <span className="ml-2">{t("contact.form.message")}</span>
             </div>
             <Textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="mt-2 bg-dark-text2/50 border-b border-dark-accent/20 rounded-none text-dark-text min-h-[120px] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-dark-text/50 text-sm sm:text-base"
+              className="mt-2 bg-muted/50 border-b border-primary/20 rounded-none text-foreground min-h-[120px] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-foreground/50 text-sm sm:text-base"
               placeholder={t("contact.form.messagePlaceholder")}
             />
           </div>
 
           {status === "success" && (
-            <div className="text-dark-accent font-sans text-sm">
+            <div className="text-primary font-sans text-sm">
               {t("contact.success.title")}
             </div>
           )}
@@ -208,7 +208,7 @@ const ContactForm = ({ onSubmit, className = "" }: ContactFormProps) => {
 
           <Button
             type="submit"
-            className="w-full bg-dark-accent hover:bg-dark-accent/90 text-dark-text3 font-sans mt-4 text-sm sm:text-base"
+            className="w-full bg-primary hover:bg-primary/90 text-card font-sans mt-4 text-sm sm:text-base"
             disabled={status === "loading" || !requiredFilled}
           >
             {status === "loading" ? "Sending..." : t("contact.form.submit")}

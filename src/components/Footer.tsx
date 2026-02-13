@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import ContactModal from './ContactModal';
 import LegalModal from './LegalModal';
-import CareersModal from './CareersModal';
 
 const Footer = () => {
   const { t } = useLanguage();
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isLegalOpen, setIsLegalOpen] = useState(false);
-  const [isCareersOpen, setIsCareersOpen] = useState(false);
   const [legalType, setLegalType] = useState<'privacy' | 'terms' | 'cookies'>('privacy');
 
   const handleLegalClick = (type: 'privacy' | 'terms' | 'cookies') => {
@@ -19,80 +16,89 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-dark-text3 border-t border-dark-accent/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Company Info */}
-          <div className="space-y-4">
-            <h3 className="text-dark-accent font-sans text-sm sm:text-base">{t('footer.company.title')}</h3>
-            <p className="text-dark-text text-xs sm:text-sm">{t('footer.description')}</p>
-            <div className="space-y-2">
-              <a
-                href="#about"
-                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
-              >
-                {t('footer.company.about')}
-              </a>
-              <button
-                onClick={() => setIsCareersOpen(true)}
-                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors w-full text-left"
-              >
-                {t('footer.company.careers')}
-              </button>
-              <button
-                onClick={() => handleLegalClick('privacy')}
-                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
-              >
-                {t('footer.legal.privacy')}
-              </button>
-              <button
-                onClick={() => handleLegalClick('terms')}
-                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
-              >
-                {t('footer.legal.terms')}
-              </button>
-              <button
-                onClick={() => handleLegalClick('cookies')}
-                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
-              >
-                {t('footer.legal.cookies')}
-              </button>
-            </div>
-          </div>
+    <footer className="relative bg-gradient-to-b from-background to-muted border-t border-primary/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex flex-col items-center justify-center space-y-8">
+          {/* Main Content */}
+          <div className="text-center space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-2xl sm:text-3xl font-serif italic text-primary mb-2">
+                Sergei Prilepko
+              </h3>
+              <p className="text-sm sm:text-base text-muted-foreground font-light">
+                {t('hero.position')}
+              </p>
+            </motion.div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-dark-accent font-sans text-sm sm:text-base">{t('footer.connect.title')}</h3>
-            <div className="space-y-2">
+            {/* Contact Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="flex flex-wrap items-center justify-center gap-6"
+            >
               <button
                 onClick={() => setIsContactOpen(true)}
-                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
+                className="text-sm text-foreground/80 hover:text-primary transition-colors duration-300 font-light"
               >
                 {t('footer.connect.contact')}
               </button>
+              <span className="text-primary/30">•</span>
               <a
                 href="https://t.me/TheLABL"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
+                className="text-sm text-foreground/80 hover:text-primary transition-colors duration-300 font-light"
               >
                 Telegram
               </a>
+              <span className="text-primary/30">•</span>
               <a
                 href="https://wa.me/your_number"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-dark-text hover:text-dark-accent text-xs sm:text-sm transition-colors"
+                className="text-sm text-foreground/80 hover:text-primary transition-colors duration-300 font-light"
               >
                 WhatsApp
               </a>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Copyright */}
-          <div className="space-y-4">
-            <p className="text-dark-text text-xs sm:text-sm">© 2024 PrilAPPS. {t('footer.rights')}</p>
-          </div>
+          {/* Divider */}
+          <div className="w-full max-w-md h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+
+          {/* Bottom Section */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-muted-foreground/60"
+          >
+            <p>© 2024 Sergei Prilepko</p>
+            <span className="hidden sm:block text-primary/30">•</span>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => handleLegalClick('privacy')}
+                className="hover:text-primary transition-colors duration-300"
+              >
+                {t('footer.legal.privacy')}
+              </button>
+              <span className="text-primary/30">•</span>
+              <button
+                onClick={() => handleLegalClick('terms')}
+                className="hover:text-primary transition-colors duration-300"
+              >
+                {t('footer.legal.terms')}
+              </button>
+            </div>
+          </motion.div>
         </div>
       </div>
 
@@ -107,12 +113,6 @@ const Footer = () => {
         isOpen={isLegalOpen}
         onClose={() => setIsLegalOpen(false)}
         type={legalType}
-      />
-
-      {/* Careers Modal */}
-      <CareersModal
-        isOpen={isCareersOpen}
-        onClose={() => setIsCareersOpen(false)}
       />
     </footer>
   );

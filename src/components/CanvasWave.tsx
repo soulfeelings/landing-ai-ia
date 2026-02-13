@@ -4,7 +4,7 @@ import { CanvasElementProps } from "./CanvasElementProps.type";
 const CanvasWave: React.FC<CanvasElementProps> = ({
   width = 120,
   height = 60,
-  color = "#D6FF3F",
+  color = "#C66644", // primary terracotta
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 

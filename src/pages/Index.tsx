@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import Header from '@/components/Header';
-import Hero from '@/components/Hero';
+import HeroNew from '@/components/HeroNew';
 import Services from '@/components/Services';
 import Projects from '@/components/Projects';
-import Process from '@/components/Process';
-// import AboutSection from '@/components/AboutSection';
+import AIPricing from '@/components/AIPricing';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -48,13 +47,12 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-dark-bg relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden">
       <Header />
-      <Hero />
+      <HeroNew />
       <Services />
       <Projects />
-      <Process />
-      {/* <AboutSection /> */}
+      <AIPricing />
       <Contact />
       <Footer />
     </div>

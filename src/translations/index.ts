@@ -15,9 +15,17 @@ export const translations = {
         highlight: "DEVELOPMENT\nSTUDIO"
       },
       subtitle: "We craft pixel-perfect interfaces and powerful backends that propel your business into the digital frontier",
-      startProject: "Start a Project",
+      startProject: "Get Estimate & Timeline",
       exploreServices: "Explore Our Services",
-      scrollToExplore: "Scroll to explore"
+      scrollToExplore: "Scroll to explore",
+      experience: "Years of Experience",
+      name: "Sergei Prilepko",
+      position: "The Best Product-Oriented",
+      positionLine2: "Software Developer",
+      description: "Crafting exceptional applications for Web, iOS & Android",
+      viewWork: "View Work",
+      watchHow: "Watch how I work",
+      minOverview: "min overview"
     },
     services: {
       title: "OUR SERVICES",
@@ -26,25 +34,25 @@ export const translations = {
       tagline: "$ tech_solutions --for=modern_problems",
       webDev: {
         title: "Web Development",
-        description: "Custom websites and web applications built with modern technologies and best practices.",
+        description: "Websites and web applications tailored to your needs.",
         price: "from $100",
         time: "from 1 day"
       },
       mobileDev: {
         title: "Mobile Development",
-        description: "Full-featured mobile apps built with modern technologies and best practices.",
+        description: "Mobile applications for iOS and Android.",
         price: "from $250",
         time: "from 3 days"
       },
       customSoftware: {
         title: "Custom Software",
-        description: "Tailored software solutions that automate processes and solve complex business problems.",
+        description: "Software solutions for automation and business tasks.",
         price: "custom pricing",
         time: "based on requirements"
       },
       apiIntegration: {
         title: "API Integration",
-        description: "Seamless integration of third-party services and platforms into your existing systems.",
+        description: "Integration of third-party services into existing systems.",
         price: "from $30",
         time: "from 1 day"
       }
@@ -70,11 +78,11 @@ export const translations = {
       }
     },
     about: {
-      title: "ABOUT US",
-      subtitle: "Who We",
-      subtitleHighlight: "Are",
-      description: "PrilAPPS is a team of passionate technologists and creatives who love building innovative web solutions.",
-      approach: "Our approach combines technical excellence with creative problem-solving to deliver results that exceed expectations and drive real business value."
+      title: "ABOUT ME",
+      subtitle: "Who I",
+      subtitleHighlight: "Am",
+      description: "I'm Sergei Prilepko, a senior developer with 7+ years of experience crafting innovative web, iOS, and Android applications.",
+      approach: "My approach combines technical excellence with creative problem-solving to deliver results that exceed expectations and drive real business value."
     },
     team: {
       title: "Our Team",
@@ -124,7 +132,7 @@ export const translations = {
         messagePlaceholder: "Enter your request here...",
         submit: "Send Request",
         alternative: "Alternative contact: ",
-        emailAddress: "echo \"Hello\" | mail -s \"Contact\" hello@prilapps.dev"
+        emailAddress: "echo \"Hello\" | mail -s \"Contact\" sergei@prilepko.dev"
       },
       success: {
         title: "Message sent!",
@@ -138,21 +146,21 @@ export const translations = {
       cookies: "Cookies",
       privacyTitle: "Privacy Policy",
       privacyContent: {
-        1: "At PrilAPPS, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information when you use our services.",
-        2: "We collect information that you provide directly to us, such as your name, email address, and any other information you choose to provide. We also collect information about your use of our services, including your IP address, browser type, and device information.",
-        3: "We use this information to provide and improve our services, communicate with you, and ensure the security of our platform. We do not sell or share your personal information with third parties except as required by law.",
-        4: "You have the right to access, correct, or delete your personal information at any time. If you have any questions about our privacy practices, please contact us."
+        1: "I take your privacy seriously. This Privacy Policy explains how I collect, use, and protect your personal information when you use my services.",
+        2: "I collect information that you provide directly to me, such as your name, email address, and any other information you choose to provide. I also collect information about your use of my services, including your IP address, browser type, and device information.",
+        3: "I use this information to provide and improve my services, communicate with you, and ensure the security of my platform. I do not sell or share your personal information with third parties except as required by law.",
+        4: "You have the right to access, correct, or delete your personal information at any time. If you have any questions about my privacy practices, please contact me."
       },
       termsTitle: "Terms of Service",
       termsContent: {
-        1: "By using PrilAPPS's services, you agree to these Terms of Service. These terms govern your use of our website and services, and outline your rights and responsibilities.",
-        2: "You agree to use our services only for lawful purposes and in accordance with these terms. You are responsible for maintaining the confidentiality of your account and for all activities that occur under your account.",
-        3: "We reserve the right to modify or terminate our services at any time, without notice. We may also update these terms from time to time, and your continued use of our services constitutes acceptance of any changes.",
-        4: "These terms are governed by the laws of the jurisdiction in which PrilAPPS operates. Any disputes arising from these terms shall be resolved in the courts of that jurisdiction."
+        1: "By using my services, you agree to these Terms of Service. These terms govern your use of my website and services, and outline your rights and responsibilities.",
+        2: "You agree to use my services only for lawful purposes and in accordance with these terms. You are responsible for maintaining the confidentiality of your account and for all activities that occur under your account.",
+        3: "I reserve the right to modify or terminate my services at any time, without notice. I may also update these terms from time to time, and your continued use of my services constitutes acceptance of any changes.",
+        4: "These terms are governed by applicable laws. Any disputes arising from these terms shall be resolved through appropriate legal channels."
       },
       cookiesTitle: "Cookie Policy",
       cookiesContent: {
-        1: "PrilAPPS uses cookies and similar technologies to improve your browsing experience and provide essential functionality. This policy explains how we use these technologies and your choices regarding them.",
+        1: "I use cookies and similar technologies to improve your browsing experience and provide essential functionality. This policy explains how I use these technologies and your choices regarding them.",
         2: "We use essential cookies that are necessary for the website to function properly. These cookies cannot be disabled and do not collect any personal information.",
         3: "We also use analytics cookies to understand how visitors interact with our website. These cookies help us improve our services and user experience.",
         4: "You can control cookies through your browser settings. However, disabling certain cookies may limit your ability to use some features of our website."
@@ -161,6 +169,19 @@ export const translations = {
         title: "Join the Team",
         message: "If you think you belong with us, write to @TheLABL on Telegram."
       }
+    },
+    pricing: {
+      badge: "AI-Powered Estimates",
+      title: "Get Instant Project Estimate",
+      subtitle: "Describe your project and our AI will provide an instant estimate",
+      placeholder: "Describe your project... (e.g., 'I need a mobile app for iOS and Android with user authentication, real-time chat, and payment integration')",
+      analyzing: "Analyzing...",
+      getEstimate: "Get Estimate",
+      yourEstimate: "Your Estimate",
+      generatedBy: "Generated by AI",
+      discuss: "Let's Discuss Your Project",
+      newEstimate: "New Estimate",
+      disclaimer: "* This is an AI-generated estimate. Final pricing will be determined after detailed consultation."
     },
     projects: {
       title: "OUR PROJECTS",
@@ -246,9 +267,17 @@ export const translations = {
         highlight: "СТУДИЯ\nРАЗРАБОТКИ"
       },
       subtitle: "Мы создаем идеальные интерфейсы и мощные бэкенды, которые продвигают ваш бизнес в цифровую эпоху",
-      startProject: "Начать проект",
+      startProject: "Узнать предварительную цену и сроки",
       exploreServices: "Наши услуги",
-      scrollToExplore: "Прокрутите для изучения"
+      scrollToExplore: "Прокрутите для изучения",
+      experience: "Лет опыта",
+      name: "Сергей Прилепко",
+      position: "Лучший продуктовый",
+      positionLine2: "разработчик",
+      description: "Создаю исключительные приложения для Web, iOS и Android",
+      viewWork: "Мои работы",
+      watchHow: "Посмотрите как я работаю",
+      minOverview: "мин обзор"
     },
     services: {
       title: "НАШИ УСЛУГИ",
@@ -257,25 +286,25 @@ export const translations = {
       tagline: "$ технические_решения --для=современных_проблем",
       webDev: {
         title: "Веб-разработка",
-        description: "Индивидуальные веб-сайты и веб-приложения, созданные с использованием современных технологий и лучших практик.",
+        description: "Веб-сайты и веб-приложения под ваши задачи.",
         price: "от 9.000 ₽",
         time: "от 1 дня"
       },
       mobileDev: {
         title: "Мобильная разработка",
-        description: "Полнофункциональные мобильные приложения, созданные с использованием современных технологий и лучших практик.",
+        description: "Мобильные приложения для iOS и Android.",
         price: "от 20.000 ₽",
         time: "от 3 дней"
       },
       customSoftware: {
         title: "Кастомное ПО",
-        description: "Индивидуальные программные решения, которые автоматизируют процессы и решают сложные бизнес-задачи.",
+        description: "Программные решения для автоматизации и решения бизнес-задач.",
         price: "цена рассчитывается под задачу",
         time: "сроки по согласованию"
       },
       apiIntegration: {
         title: "API Интеграция",
-        description: "Безупречная интеграция сторонних сервисов и платформ в ваши существующие системы.",
+        description: "Интеграция сторонних сервисов в существующие системы.",
         price: "от 3.000 ₽",
         time: "от 1 дня"
       }
@@ -301,11 +330,11 @@ export const translations = {
       }
     },
     about: {
-      title: "О НАС",
-      subtitle: "Кто мы",
-      subtitleHighlight: "есть",
-      description: "PrilAPPS - это команда увлеченных технологов и креативщиков, которые любят создавать инновационные веб-решения.",
-      approach: "Наш подход сочетает техническое совершенство с креативным решением проблем, чтобы обеспечить результаты, превышающие ожидания и приносящие реальную бизнес-ценность."
+      title: "ОБО МНЕ",
+      subtitle: "Кто я",
+      subtitleHighlight: "такой",
+      description: "Я Сергей Прилепко, senior разработчик с опытом 7+ лет в создании инновационных веб, iOS и Android приложений.",
+      approach: "Мой подход сочетает техническое совершенство с креативным решением проблем, чтобы обеспечить результаты, превышающие ожидания и приносящие реальную бизнес-ценность."
     },
     team: {
       title: "Наша команда",
@@ -355,7 +384,7 @@ export const translations = {
         messagePlaceholder: "Введите Ваш запрос здесь...",
         submit: "Отправить заявку",
         alternative: "Альтернативный контакт: ",
-        emailAddress: "echo \"Привет\" | mail -s \"Контакт\" hello@prilapps.dev"
+        emailAddress: "echo \"Привет\" | mail -s \"Контакт\" sergei@prilepko.dev"
       },
       success: {
         title: "Сообщение отправлено!",
@@ -369,21 +398,21 @@ export const translations = {
       cookies: "Cookies",
       privacyTitle: "Политика Конфиденциальности",
       privacyContent: {
-        1: "В PrilAPPS мы серьезно относимся к вашей конфиденциальности. Эта Политика Конфиденциальности объясняет, как мы собираем, используем и защищаем вашу личную информацию при использовании наших услуг.",
-        2: "Мы собираем информацию, которую вы предоставляете нам напрямую, такую как ваше имя, адрес электронной почты и любую другую информацию, которую вы решите предоставить. Мы также собираем информацию об использовании вами наших услуг, включая ваш IP-адрес, тип браузера и информацию об устройстве.",
-        3: "Мы используем эту информацию для предоставления и улучшения наших услуг, общения с вами и обеспечения безопасности нашей платформы. Мы не продаем и не передаем вашу личную информацию третьим лицам, за исключением случаев, предусмотренных законом.",
-        4: "Вы имеете право в любое время получить доступ к вашей личной информации, исправить или удалить ее. Если у вас есть вопросы о нашей политике конфиденциальности, пожалуйста, свяжитесь с нами."
+        1: "Я серьезно отношусь к вашей конфиденциальности. Эта Политика Конфиденциальности объясняет, как я собираю, использую и защищаю вашу личную информацию при использовании моих услуг.",
+        2: "Я собираю информацию, которую вы предоставляете мне напрямую, такую как ваше имя, адрес электронной почты и любую другую информацию, которую вы решите предоставить. Я также собираю информацию об использовании вами моих услуг, включая ваш IP-адрес, тип браузера и информацию об устройстве.",
+        3: "Я использую эту информацию для предоставления и улучшения моих услуг, общения с вами и обеспечения безопасности моей платформы. Я не продаю и не передаю вашу личную информацию третьим лицам, за исключением случаев, предусмотренных законом.",
+        4: "Вы имеете право в любое время получить доступ к вашей личной информации, исправить или удалить ее. Если у вас есть вопросы о моей политике конфиденциальности, пожалуйста, свяжитесь со мной."
       },
       termsTitle: "Условия Использования",
       termsContent: {
-        1: "Используя услуги PrilAPPS, вы соглашаетесь с настоящими Условиями Использования. Эти условия регулируют использование вами нашего веб-сайта и услуг, а также определяют ваши права и обязанности.",
-        2: "Вы соглашаетесь использовать наши услуги только в законных целях и в соответствии с этими условиями. Вы несете ответственность за сохранение конфиденциальности вашей учетной записи и за все действия, которые происходят под вашей учетной записью.",
-        3: "Мы оставляем за собой право изменять или прекращать наши услуги в любое время без предварительного уведомления. Мы также можем время от времени обновлять эти условия, и ваше дальнейшее использование наших услуг означает принятие любых изменений.",
-        4: "Эти условия регулируются законами юрисдикции, в которой работает PrilAPPS. Любые споры, возникающие из этих условий, должны разрешаться в судах этой юрисдикции."
+        1: "Используя мои услуги, вы соглашаетесь с настоящими Условиями Использования. Эти условия регулируют использование вами моего веб-сайта и услуг, а также определяют ваши права и обязанности.",
+        2: "Вы соглашаетесь использовать мои услуги только в законных целях и в соответствии с этими условиями. Вы несете ответственность за сохранение конфиденциальности вашей учетной записи и за все действия, которые происходят под вашей учетной записью.",
+        3: "Я оставляю за собой право изменять или прекращать мои услуги в любое время без предварительного уведомления. Я также могу время от времени обновлять эти условия, и ваше дальнейшее использование моих услуг означает принятие любых изменений.",
+        4: "Эти условия регулируются применимым законодательством. Любые споры, возникающие из этих условий, должны разрешаться через соответствующие правовые каналы."
       },
       cookiesTitle: "Политика Использования Cookies",
       cookiesContent: {
-        1: "PrilAPPS использует файлы cookie и аналогичные технологии для улучшения вашего опыта просмотра и обеспечения необходимой функциональности. Эта политика объясняет, как мы используем эти технологии и ваши возможности в отношении них.",
+        1: "Я использую файлы cookie и аналогичные технологии для улучшения вашего опыта просмотра и обеспечения необходимой функциональности. Эта политика объясняет, как я использую эти технологии и ваши возможности в отношении них.",
         2: "Мы используем необходимые файлы cookie, которые необходимы для правильной работы веб-сайта. Эти файлы cookie нельзя отключить, и они не собирают никакой личной информации.",
         3: "Мы также используем аналитические файлы cookie для понимания того, как посетители взаимодействуют с нашим веб-сайтом. Эти файлы cookie помогают нам улучшать наши услуги и пользовательский опыт.",
         4: "Вы можете контролировать файлы cookie через настройки вашего браузера. Однако отключение определенных файлов cookie может ограничить вашу возможность использовать некоторые функции нашего веб-сайта."
@@ -392,6 +421,19 @@ export const translations = {
         title: "Присоединяйся к команде",
         message: "Если ты думаешь, что тебе к нам — пиши @TheLABL в Telegram."
       }
+    },
+    pricing: {
+      badge: "AI-оценка проектов",
+      title: "Получите мгновенную оценку проекта",
+      subtitle: "Опишите ваш проект, и AI предоставит мгновенную оценку",
+      placeholder: "Опишите ваш проект... (например, 'Мне нужно мобильное приложение для iOS и Android с авторизацией, чатом в реальном времени и интеграцией платежей')",
+      analyzing: "Анализирую...",
+      getEstimate: "Получить оценку",
+      yourEstimate: "Ваша оценка",
+      generatedBy: "Сгенерировано AI",
+      discuss: "Давайте обсудим ваш проект",
+      newEstimate: "Новая оценка",
+      disclaimer: "* Это AI-оценка. Окончательная стоимость будет определена после детальной консультации."
     },
     projects: {
       title: "НАШИ ПРОЕКТЫ",

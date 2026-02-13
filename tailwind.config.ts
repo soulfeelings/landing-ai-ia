@@ -19,8 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				mono: ['JetBrains Mono', 'monospace'],
-				sans: ['Inter', 'sans-serif'],
+				serif: ['Instrument Serif', 'serif'],
+				sans: ['Outfit', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -55,14 +55,6 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
-				},
-				// New Dark Theme Colors
-				dark: {
-					bg: '#171717',
-					text: '#FFFFFF',
-					text2: '#1e1e1e',
-					text3: '#2a2a2a',
-					accent: '#D6FF3F',
 				}
 			},
 			borderRadius: {
